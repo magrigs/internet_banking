@@ -1,0 +1,101 @@
+{% extends 'base.html' %} {% block content %}
+<script>
+	jQuery(function () {
+		jQuery("#user_dob").datepicker({
+			changeMonth: true,
+			changeYear: true,
+			yearRange: "0:+1",
+			dateFormat: 'd MM,yy'
+		});
+		jQuery("#user_doj").datepicker({
+			changeMonth: true,
+			changeYear: true,
+			yearRange: "0:+1",
+			dateFormat: 'd MM,yy'
+		});
+	});
+</script>
+<!--breadcrumbs start-->
+<div class="breadcrumbs">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4 col-sm-4">
+				<h1>{{heading}}</h1>
+			</div>
+		</div>
+	</div>
+</div>
+<!--breadcrumbs end-->
+
+<!--container start-->
+<div class="registration-bg">
+	<div class="row">
+		<form enctype="multipart/form-data" method="post" class="form-signin wow fadeInUp" action="" style="max-width:60%">
+			{% csrf_token %}
+			<h2 class="form-signin-heading">
+				{% if fn == "add" %}
+					{{sub_heading}} Registration
+				{% elif fn == "update" %}
+					{{sub_heading}}
+				{% else %}
+					My Profile
+				{% endif %}
+			</h2>
+			{% if messages %}
+				<div class="alert alert-success fade in" style="margin:10px;">
+					{% for message in messages %}
+						<strong>{{ message }}</strong>
+					{% endfor %}
+				</div>
+			{% endif %}
+			<div class="login-wrap">
+				<div style="font-size:18px; color: #000000; margin:20px 10px 30px 10px; border-bottom:1px solid #CCC">User Login Details</div>
+				<div class="col-xs-6 form-group">
+					<label for="pwd">User Full Name</label>
+					<input type="text" class="form-control" placeholder="User Name" autofocus="" name="user_name" id="user_name" value="{{userdetails.user_name}}">
+				</div>
+				<div class="col-xs-6 form-group">
+					<label for="pwd">Login Username</label>
+					<input type="text" class="form-control" placeholder="Username" autofocus="" name="user_username" id="user_username" value="{{userdetails.user_username}}">
+				</div>
+				<div class="col-xs-6 form-group update-user">
+					<label for="pwd">Password</label>
+					<input type="password" class="form-control" placeholder="Password" autofocus="" name="user_password" id="user_password" value="{{userdetails.user_password}}">
+				</div>
+				<div class="col-xs-6 form-group update-user">
+					<label for="pwd">Confirm Password</label>
+					<input type="password" class="form-control" placeholder="Confirm Password" autofocus="" name="user_confirm_password" id="user_confirm_password" value="{{userdetails.user_password}}">
+				</div>
+				<div class="col-xs-6 form-group">
+					<label for="pwd">Email ID</label>
+					<input type="text" class="form-control" placeholder="Email ID" autofocus="" name="user_email" id="user_email" value="{{userdetails.user_email}}">
+				</div>
+				<div class="col-xs-6 form-group">
+					<label for="pwd">Mobile Number</label>
+					<input type="text" class="form-control" placeholder="Mobile Number" autofocus="" name="user_mobile" id="user_mobile" value="{{userdetails.user_mobile}}">
+				</div>
+				<div class="clearfix" style="font-size:18px; color: #000000; margin:20px 10px 30px 10px; border-bottom:1px solid #CCC">User Account Details</div>
+				<div class="col-xs-6 form-group">
+					<label for="pwd">Accont No.</label>
+					<input type="text" class="form-control" placeholder="Account No" autofocus="" id="user_account_no" name="user_account_no" value="{{userdetails.user_account_no}}">
+				</div>
+				<div class="col-xs-6 form-group">
+					<label for="pwd">IFSC Code</label>
+					<input type="text" class="form-control" placeholder="IFSC Code" autofocus="" id="user_ifsc_code" name="user_ifsc_code" value="{{userdetails.user_ifsc_code}}">
+				</div>
+				<button class="btn btn-lg btn-login btn-block" type="submit">Submit</button>
+			</div>
+			<input type="hidden" name="act" value="save_user">
+			<input type="hidden" name="user_aadhar" value="{{userdetails.user_aadhar}}">
+			<input type="hidden" name="avail_image" value="{{userdetails.user_image}}">
+			<input type="hidden" name="user_id" value="{{userdetails.user_id}}">
+		</form>
+	</div>
+</div>
+{% if userdetails %}
+<script>
+	$(".update-user").hide();
+</script>
+{% endif %}
+<!--container end-->
+{% endblock content %}

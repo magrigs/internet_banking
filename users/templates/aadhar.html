@@ -1,0 +1,49 @@
+{% extends 'base.html' %} {% block content %}
+<!--breadcrumbs start-->
+<div class="breadcrumbs">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4 col-sm-4">
+				<h1>Update Your Aadhar Card</h1>
+			</div>
+		</div>
+	</div>
+</div>
+<!--breadcrumbs end-->
+
+<!--container start-->
+<div class="registration-bg">
+	<div class="row">
+		<form enctype="multipart/form-data" method="post" class="form-signin wow fadeInUp" action="" style="max-width:60%">
+			{% csrf_token %}
+			<h2 class="form-signin-heading">
+				Update Your Aadhar Card
+			</h2>
+			{% if messages %}
+				<div class="alert alert-success fade in" style="margin:10px;">
+					{% for message in messages %}
+						<strong>{{ message }}</strong>
+					{% endfor %}
+				</div>
+			{% endif %}
+			<div class="login-wrap">
+				<div style="font-size:18px; color: #000000; margin:20px 10px 30px 10px; border-bottom:1px solid #CCC">Enter Your Aadhar Card</div>
+				<div class="col-xs-6 form-group">
+					<label for="pwd">Aadhar Card Number</label>
+					<input type="text" class="form-control" placeholder="Enter Your Aadhar Number" autofocus="" name="user_aadhar" id="user_aadhar" value="{{userdetails.user_aadhar}}">
+				</div>
+				<button class="btn btn-lg btn-login btn-block" type="submit">Update My Aadhar</button>
+			</div>
+			<input type="hidden" name="act" value="save_user">
+			<input type="hidden" name="avail_image" value="{{userdetails.user_image}}">
+			<input type="hidden" name="user_id" value="{{userdetails.user_id}}">
+		</form>
+	</div>
+</div>
+{% if userdetails %}
+<script>
+	$(".update-user").hide();
+</script>
+{% endif %}
+<!--container end-->
+{% endblock content %}

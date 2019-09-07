@@ -1,0 +1,98 @@
+{% extends 'base.html' %} {% block content %}
+<style>
+  .my-dash .mar-b-50 {
+    margin-bottom: 50px;
+    border:1px solid #3a5164;
+    padding: 30px;
+    color: #ffffff;
+  }
+
+  .mytext {
+    color: #3a5164;
+    text-align: right;
+    margin-bottom: 7px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .my-dash li {
+    padding: 15px;
+    background-color: #3a5164;
+    margin: 5px;
+  }
+  .my-dash a {
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: bold;
+  }
+  .my-dash a:hover {
+      color: #ffffff;
+      text-decoration: underline;
+      font-size: 16px;
+      font-weight: bold;
+  }
+  .btn-circle {
+    width: 156px;
+    height: 156px;
+    text-align: center;
+    padding: 6px 0;
+    line-height: 1.42;
+    border-radius: 90px;
+    color: #fff;
+    background: #57889c;
+    background-color: #57889c;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .btn-circle div{
+    margin-top: 40px;
+  }
+  .mydash {
+    border:1px solid #57889c;
+    padding:10px;
+    margin:10px;
+  }
+  .col-lg-2 {
+    width:14.667%;
+  }
+  </style>  
+<!--breadcrumbs start-->
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-sm-4">
+        <h1>
+          Users Dashboard
+        </h1>
+      </div>
+    </div>
+  </div>
+</div>
+<!--breadcrumbs end-->
+
+<!--container start-->
+<div class="container my-dash">
+  <div class="row mar-b-50">
+    <div class="mytext">Welcome {{ request.session.user_name }}. Your current account balance is <span style="font-size:25px">{{balance}}.00/-</span> and future balance will be <span style="font-size:25px">{{future}}.00/-</span>  </div>
+    <div class="col-lg-7 about wow fadeInRight">
+      <h3>Internet Banking System - Users Dashboard</h3>
+      {% if messages %}
+        <div class="alert alert-success fade in" style="margin:10px;">
+            {% for message in messages %}
+                <strong>{{ message }}</strong>
+            {% endfor %}
+        </div>
+      {% endif %}
+      {{data}}
+      <ul>
+        <li><a href="/users/link_aadhar_card">Link Aadhar Card</a></li>
+        <li><a href="/users/estimated_balance">Show Estimated Balance</a></li>
+        <li><a href="/users/deposit">Deposit Payment</a></li>
+        <li><a href="/users/transfer">Transfer Payment</a></li>
+        <li><a href="/users/transactions">All Transactions</a></li>
+        <li><a href="/users/logout">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+{% endblock content %}
