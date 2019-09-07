@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'internet_banking_system.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'mysql.connector.django',
         'NAME': 'internet_banking_system',
         'USER':'root',
         'PASSWORD':'',
