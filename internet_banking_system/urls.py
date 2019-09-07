@@ -23,6 +23,6 @@ urlpatterns = [
     url(r'^$', include('users.urls')),
     url(r'^users/', include('users.urls')),
     url(r'^pages/', include('pages.urls')),
-    url(r'^admin/', admin.site.urls),
+    url(r'^content/', admin.site.urls),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

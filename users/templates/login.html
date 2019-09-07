@@ -11,11 +11,11 @@
 </div>
 <!--breadcrumbs end-->
 
-<!--container start-->
+<!--container start signin-->
 <div class="login-bg">
     <div class="container">
         <div class="form-wrapper">
-            <form onsubmit="/signin" method="post" class="form-signin wow fadeInUp">
+            <form onsubmit="/loginCheck" method="post" class="form-signin wow fadeInUp">
                 {% csrf_token %}
                 <h2 class="form-signin-heading">Login to your account </h2>
                 {% if messages %}

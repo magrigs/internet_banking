@@ -9,6 +9,14 @@ from django.db import connection
 from internet_banking_system.utils import getDropDown, dictfetchall
 import json
 
+#login
+def loginCheck(request):
+    
+
+
+
+
+
 # Dashboard of User
 def dashboard(request):
     currentBalance = getData(int(request.session.get('user_id', None)))
