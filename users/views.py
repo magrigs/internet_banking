@@ -11,10 +11,17 @@ import json
 
 
 # login
-# def loginCheck(request):
-# return render(request, 'logincheck.html')
-def test(request, id):
-    return render('test.html')
+def dashboard_admin(request):
+    currentBalance = getData(int(request.session.get('user_id', None)))
+    futureBalance = int(currentBalance['account_amount']) \
+                    + (int(currentBalance['account_amount']) * 0.07 * 1)
+    context = {
+        "fn": "add",
+        "balance": currentBalance['account_amount'],
+        "future": futureBalance,
+        "bienvenu": "bienvenue cher administrateur",
+    };
+    return render(request, 'dashboard_admin.html', context)
 
 
 # Dashboard of User
@@ -186,9 +193,9 @@ def deposit(request):
 
 # Create your views here.
 def index(request):
-   # if (request.session.get('authenticated', False) == True):
-       # return redirect('/users/report') le vrai code
-     #  return redirect('/users/login')
+    # if (request.session.get('authenticated', False) == True):
+    # return redirect('/users/report') le vrai code
+    #  return redirect('/users/login')
 
     context = {
         "message": "Please Log in",
@@ -207,7 +214,7 @@ def index(request):
             request.session['user_id'] = getUser.user_id
             request.session['user_level_id'] = getUser.user_level_id
             request.session['user_name'] = getUser.user_name
-            return redirect('/users/dashboard')
+            return redirect('/users/dashboard_admin')
         else:
             context['message'] = "Wrong Password"
             context['error'] = True
