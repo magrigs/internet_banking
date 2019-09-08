@@ -432,3 +432,6 @@ def delete(request, userId):
         return HttpResponse('Something went wrong. Error Message : ' + str(e))
     messages.add_message(request, messages.INFO, "User Deleted Successfully !!!")
     return redirect('listing')
+
+
+#--------------------les fonction de l'adm---------------------------
