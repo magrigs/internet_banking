@@ -190,11 +190,10 @@ def deposit(request):
 
     return redirect('/users/dashboard')
 
-
-# Create your views here.
+#my test
 def index(request):
-    # if (request.session.get('authenticated', False) == True):
-    # return redirect('/users/report') le vrai code
+    #if (request.session.get('authenticated', False) == True):
+   #     return redirect('/users/report') #le vrai code
     #  return redirect('/users/login')
 
     context = {
@@ -209,18 +208,54 @@ def index(request):
             context['message'] = "Wrong username"
             context['error'] = True
             return render(request, 'login.html', context)
+
         if (getUser.user_password == request.POST['password']):
             request.session['authenticated'] = True
             request.session['user_id'] = getUser.user_id
             request.session['user_level_id'] = getUser.user_level_id
             request.session['user_name'] = getUser.user_name
-            return redirect('/users/dashboard_admin')
+
+            if request.POST['username'] == 'admin':
+                return redirect('/users/dashboard_admin')
+            return redirect('/users/dashboard')
+
         else:
             context['message'] = "Wrong Password"
             context['error'] = True
             return render(request, 'login.html', context)
     else:
         return render(request, 'login.html', context)
+
+# Create your views here.
+# def index(request):
+#     #if (request.session.get('authenticated', False) == True):
+#    #     return redirect('/users/report') #le vrai code
+#     #  return redirect('/users/login')
+#
+#     context = {
+#         "message": "Please Log in",
+#         "error": False
+#     }
+#     if (request.method == "POST"):
+#         try:
+#             getUser = user.objects.get(user_username=request.POST['username'])
+#             context['msg'] = getUser
+#         except:
+#             context['message'] = "Wrong username"
+#             context['error'] = True
+#             return render(request, 'login.html', context)
+#         if (getUser.user_password == request.POST['password']):
+#             request.session['authenticated'] = True
+#             request.session['user_id'] = getUser.user_id
+#             request.session['user_level_id'] = getUser.user_level_id
+#             request.session['user_name'] = getUser.user_name
+#             return redirect('/users/dashboard_admin')
+#         else:
+#             context['message'] = "Wrong Password"
+#             context['error'] = True
+#             return render(request, 'login.html', context)
+#     else:
+#         return render(request, 'login.html', context)
 
 
 def listing(request, userId):
