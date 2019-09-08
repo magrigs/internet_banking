@@ -16,7 +16,7 @@ def dashboard_admin(request):
     futureBalance = int(currentBalance['account_amount']) \
                     + (int(currentBalance['account_amount']) * 0.07 * 1)
     context = {
-        "fn": "add",
+        "fn": "Ajouter",
         "balance": currentBalance['account_amount'],
         "future": futureBalance,
         "bienvenu": "bienvenue cher administrateur",
@@ -29,7 +29,7 @@ def dashboard(request):
     currentBalance = getData(int(request.session.get('user_id', None)))
     futureBalance = int(currentBalance['account_amount']) + (int(currentBalance['account_amount']) * 0.07 * 1)
     context = {
-        "fn": "add",
+        "fn": "Ajouter",
         "balance": currentBalance['account_amount'],
         "future": futureBalance
     };
@@ -41,7 +41,7 @@ def estimated_balance(request):
     currentBalance = getData(int(request.session.get('user_id', None)))
     futureBalance = int(currentBalance['account_amount']) + (int(currentBalance['account_amount']) * 0.07 * 1)
     context = {
-        "fn": "add",
+        "fn": "Ajouter",
         "balance": currentBalance['account_amount'],
         "future": futureBalance
     };
@@ -68,7 +68,7 @@ def transactions(request):
     }
 
     # Message according Salary #
-    context['heading'] = "Transactions Details";
+    context['heading'] = "Detailes Des Transactions ";
     return render(request, 'transaction-list.html', context)
 
 
@@ -167,7 +167,7 @@ def getTransactionJSON(request, one=False):
 def deposit(request):
     currentBalance = getData(int(request.session.get('user_id', None)))
     context = {
-        "message": "Please Log in",
+        "message": "Connectez - vous s.v.p ",
         "error": False,
         "data": ""
     }
@@ -197,7 +197,7 @@ def index(request):
     #  return redirect('/users/login')
 
     context = {
-        "message": "Please Log in",
+        "message": "Connectez - vous s.v.p",
         "error": False
     }
     if (request.method == "POST"):
@@ -205,11 +205,11 @@ def index(request):
             getUser = user.objects.get(user_username=request.POST['username'])
             context['msg'] = getUser
         except:
-            context['message'] = "Wrong username"
+            context['message'] = "Mot de passe incorrect"
             context['error'] = True
             return render(request, 'login.html', context)
 
-        if (getUser.user_password == request.POST['password']):
+        if getUser.user_password == request.POST['password']:
             request.session['authenticated'] = True
             request.session['user_id'] = getUser.user_id
             request.session['user_level_id'] = getUser.user_level_id
@@ -220,7 +220,7 @@ def index(request):
             return redirect('/users/dashboard')
 
         else:
-            context['message'] = "Wrong Password"
+            context['message'] = "Mot de passe incorrect"
             context['error'] = True
             return render(request, 'login.html', context)
     else:
@@ -264,20 +264,20 @@ def listing(request, userId):
     try:
         userlist = user.objects.filter(Q(user_level_id=userId))
     except Exception, e:
-        return HttpResponse('Something went wrong. Error Message : ' + str(e))
+        return HttpResponse('hops ! Quelque chose cloche. Message de l\'erreur : ' + str(e))
 
     context = {
         "showmsg": True,
-        "message": "User Updated Successfully",
+        "message": "L'utilisateur a Mis a jour Avec succes",
         "userlist": userlist
     }
     # Message according Users Role #
     if (userId == "1"):
-        context['heading'] = "System Admin Report";
+        context['heading'] = "Systeme Rapport de L'Admin";
     if (userId == "2"):
-        context['heading'] = "Manager Report";
+        context['heading'] = "Manager ReportRapport du directeur";
     if (userId == "3"):
-        context['heading'] = "Employees Report";
+        context['heading'] = "Rapportent des employes ";
     if (userId == "4"):
         context['heading'] = "Accountant Report";
     return render(request, 'user-report.html', context)

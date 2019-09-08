@@ -1,6 +1,6 @@
 {% load static from staticfiles%}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
 	<meta charset="utf-8">
@@ -78,29 +78,29 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-				<a class="navbar-brand" href="/">Internet Banking System</a>
+				<a class="navbar-brand" href="/">Système bancaire Internet</a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 					<li><a href="/">Home</a></li>
 					{% if request.session.authenticated %}	
-					<li><a href="/users/dashboard">Dashboard</a></li>	
+					<li><a href="/users/dashboard">Tableau de bord</a></li>
 					<li class="dropdown">
-						<a class="dropdown-toggle" data-close-others="false" data-delay="0" data-hover="dropdown" data-toggle="dropdown" href="#">My Account <i class="fa fa-angle-down"></i>
+						<a class="dropdown-toggle" data-close-others="false" data-delay="0" data-hover="dropdown" data-toggle="dropdown" href="#">Mon compte <i class="fa fa-angle-down"></i>
                       </a>
 						<ul class="dropdown-menu">
 							<li><a href="/users/update/{{ request.session.user_id }}/">My Account</a></li>
-							<li><a href="/users/transfer">Transfer Money</a></li>
-							<li><a href="/users/transactions">My Transactions</a></li>
-							<li><a href="/users/changepassword">Change Password</a></li>
+							<li><a href="/users/transfer">Transférer de l'argent</a></li>
+							<li><a href="/users/transactions">Mes Transactions</a></li>
+							<li><a href="/users/changepassword">Transférer de l'argent</a></li>
 						</ul>
 					</li>
-					<li><a href="/users/logout">Logout</a></li>
+					<li><a href="/users/logout">Déconnexion</a></li>
 					{% else %}
-					<li><a href="/pages/about">About Us</a></li>
-					<li><a href="/users/add">Register</a></li>
-					<li><a href="/pages/contact">Contact Us</a></li>
-					<li><a href="/users">Login</a></li>
+					<li><a href="/pages/about">propos de nous</a></li>
+					<li><a href="/users/add">Enregustrer</a></li>
+					<li><a href="/pages/contact">Contactez nous</a></li>
+					<li><a href="/users">Connexion</a></li>
 					{% endif %}
 				</ul>
 				</ul>
@@ -114,16 +114,16 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-					<h4 class="modal-title">Record Delete Confirmation ?</h4>
+					<h4 class="modal-title">Enregistrer la confirmation de suppression?</h4>
 				</div>
 				<div class="modal-body">
 					<form role="form" class="form-inline">
 						<div class="form-group">
-							Do you want to delete the record ?
+							Voulez-vous supprimer l'enregistrement ?
 						</div>
 						<div class="rows" style="float:right; margin-top:15px;">
 							<button class="btn btn-danger" type="button" onClick="delete_record()">Delete</button>
-							<button class="btn btn-success" type="button" class="close" data-dismiss="modal" aria-hidden="true">Cancel</button>
+							<button class="btn btn-success" type="button" class="close" data-dismiss="modal" aria-hidden="true">Supprimer</button>
 						</div>
 					</form>
 					<div style="clear:both"></div>
@@ -140,7 +140,7 @@
 			<div class="row">
 				<div class="col-md-4">
 					<div class="copyright">
-						<p>&copy; Copyright Internet Banking System.</p>
+						<p>&copy; Copyright 3-SIGMA</p>
 					</div>
 				</div>
 			</div>

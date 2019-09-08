@@ -34,7 +34,7 @@
 			{% csrf_token %}
 			<h2 class="form-signin-heading">
 				{% if fn == "add" %}
-					{{sub_heading}} Registration
+					{{sub_heading}} Enregistrement
 				{% elif fn == "update" %}
 					{{sub_heading}}
 				{% else %}
@@ -49,22 +49,22 @@
 				</div>
 			{% endif %}
 			<div class="login-wrap">
-				<div style="font-size:18px; color: #000000; margin:20px 10px 30px 10px; border-bottom:1px solid #CCC">User Login Details</div>
+				<div style="font-size:18px; color: #000000; margin:20px 10px 30px 10px; border-bottom:1px solid #CCC"> Détails De Connection D'Utilisateur </div>
 				<div class="col-xs-6 form-group">
 					<label for="pwd">User Full Name</label>
-					<input type="text" class="form-control" placeholder="User Name" autofocus="" name="user_name" id="user_name" value="{{userdetails.user_name}}">
+					<input type="text" class="form-control" placeholder="Nom d'Utilisateur" autofocus="" name="user_name" id="user_name" value="{{userdetails.user_name}}">
 				</div>
 				<div class="col-xs-6 form-group">
-					<label for="pwd">Login Username</label>
-					<input type="text" class="form-control" placeholder="Username" autofocus="" name="user_username" id="user_username" value="{{userdetails.user_username}}">
+					<label for="pwd"> Connection De Nom d'Utilisateur</label>
+					<input type="text" class="form-control" placeholder="Nom d'Utilisateur" autofocus="" name="user_username" id="user_username" value="{{userdetails.user_username}}">
 				</div>
 				<div class="col-xs-6 form-group update-user">
-					<label for="pwd">Password</label>
-					<input type="password" class="form-control" placeholder="Password" autofocus="" name="user_password" id="user_password" value="{{userdetails.user_password}}">
+					<label for="pwd">Mot De Passe</label>
+					<input type="password" class="form-control" placeholder="Mot De Passe" autofocus="" name="user_password" id="user_password" value="{{userdetails.user_password}}">
 				</div>
 				<div class="col-xs-6 form-group update-user">
-					<label for="pwd">Confirm Password</label>
-					<input type="password" class="form-control" placeholder="Confirm Password" autofocus="" name="user_confirm_password" id="user_confirm_password" value="{{userdetails.user_password}}">
+					<label for="pwd">Confirmer  Mot De Passe</label>
+					<input type="password" class="form-control" placeholder="Confirmer  Mot De Passe" autofocus="" name="user_confirm_password" id="user_confirm_password" value="{{userdetails.user_password}}">
 				</div>
 				<div class="col-xs-6 form-group">
 					<label for="pwd">Email ID</label>

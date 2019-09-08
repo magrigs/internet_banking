@@ -18,7 +18,7 @@
             <form onsubmit="/login" method="post" class="form-signin wow fadeInUp"
             >
                 {% csrf_token %}
-                <h2 class="form-signin-heading">Login to your account </h2>
+                <h2 class="form-signin-heading">Se Connecter </h2>
                 {% if messages %}
                     <div class="alert alert-success fade in" style="margin:10px;">
                         {% for message in messages %}
@@ -32,14 +32,14 @@
                 </div>
                 {% endif %}
                 <div class="login-wrap">
-                    <input type="text" class="form-control" placeholder="User ID" autofocus name="username" required>
-                    <input type="password" class="form-control" placeholder="Password" name="password" required>
+                    <input type="text" class="form-control" placeholder="ID d'Utilisateur" autofocus name="username" required>
+                    <input type="password" class="form-control" placeholder="Mot de Passe" name="password" required>
                     <label class="checkbox">
                     <span class="pull-right">
                        &nbsp;
                     </span>
                 </label>
-                    <button class="btn btn-lg btn-login btn-block" type="submit">Sign in</button>
+                    <button class="btn btn-lg btn-login btn-block" type="submit">Connection</button>
                 </div>
                 <input type="hidden" name="act" value="check_login">
             </form>
