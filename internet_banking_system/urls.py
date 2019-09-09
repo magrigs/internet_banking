@@ -24,6 +24,6 @@ urlpatterns = [
     url(r'^pages/', include('pages.urls')),
     url(r'^content/', admin.site.urls),
     # ------------------------------------------image url background
-    #url(r'^assets/login_asset/', admin.site.urls),
+    url(r'^assets/login_asset/images/', include('users.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
