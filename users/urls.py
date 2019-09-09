@@ -23,5 +23,7 @@ urlpatterns = [
     # url(r'^test$', views.test, name="test"),
 
     # ------------------------------ admin -------------------------------
-    url(r'^admin/all_user', views.all_user, name='Tous_utilisateur'),
+    #url(r'^admin/all_user/', views.all_user, name='Tous_utilisateur'),
+
+
 ]
