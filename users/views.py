@@ -437,7 +437,8 @@ def delete(request, userId):
 
 
 # --------------------les fonction de l'adm---------------------------
-
+def bg():
+    return '../assets/login_asset/images/bg-01.jpg'
 #
 
 
