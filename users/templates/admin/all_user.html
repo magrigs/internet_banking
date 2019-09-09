@@ -1,0 +1,89 @@
+{% extends 'base.html' %} {% block content %}
+<script>
+	$(document).on("click", ".delete-dialog", function () {
+		var id = $(this).data('id');
+		$("#recordID").val(id);
+	});
+	function delete_record(department_id) {
+		location.href = "/salary/delete/" + $("#recordID").val();
+	}
+</script>
+<script>
+	
+	var graphdata1 = JSON.parse('{{ graphData | escapejs }}');
+	
+	$(function () {
+		$("#Linegraph").SimpleChart({
+			ChartType: "Line",
+			toolwidth: "50",
+			toolheight: "25",
+			axiscolor: "#E6E6E6",
+			textcolor: "#6E6E6E",
+			showlegends: true,
+			data: [graphdata1],
+			legendsize: "140",
+			legendposition: 'bottom',
+			xaxislabel: 'Transaction No.',
+			title: 'Transaction Charts',
+			yaxislabel: 'Transactions'
+		});
+	});
+</script>
+
+<!--breadcrumbs start-->
+
+<div class="breadcrumbs">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4 col-sm-4">
+				<h1>
+					{{ heading }} {{json_output}}
+				</h1>
+			</div>
+		</div>
+	</div>
+</div>
+<!--breadcrumbs end-->
+
+<div class="container">
+	<div class="row">
+		{% if messages %}
+		<div class="alert alert-success fade in" style="margin:10px;">
+			{% for message in messages %}
+			<strong>{{ message }}</strong> {% endfor %}
+		</div>
+		{% endif %}
+		<div class="col-lg-12">
+			<form name="frm" action="" method="post">
+				<h2 style="color:#152c3f; font-size:24px; border-bottom:1px solid #152c3f">La Liste Des Utilisateurs</h2>
+				<section class="panel">
+					<div style="height:400px; overflow:scroll">
+						<table class="table table-striped table-advance table-hover" style="color:#000000">
+							<tbody>
+								<tr class="bg-primary">
+									<th style="background-color:#152c3f; color:#FFFFFF;">id</th>
+									<th style="background-color:#152c3f; color:#FFFFFF;">Identifiant</th>
+									<th style="background-color:#152c3f; color:#FFFFFF;">Nom</th>
+                                    <th style="background-color:#152c3f; color:#FFFFFF;">telephone</th>
+                                    <th style="background-color:#152c3f; color:#FFFFFF;">email</th>
+								</tr>
+								{% for data in datalist %}
+								<tr>
+{#									<td style="text-align:center; font-weight:bold;">{{ forloop.counter }}</td>#}
+									<td>{{data.user_id}}</td>
+									<td>{{data.user_username}}</td>
+									<td>{{data.user_name}}</td>
+                                    <td>{{data.user_mobile}}</td>
+                                    <td>{{data.user_email}}</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</section>
+
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock content %}

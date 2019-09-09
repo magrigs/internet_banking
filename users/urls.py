@@ -21,4 +21,7 @@ urlpatterns = [
     url(r'^delete/(?P<userId>\w{0,50})/$', views.delete, name="delete"),
 
     # url(r'^test$', views.test, name="test"),
+
+    # ------------------------------ admin -------------------------------
+    url(r'^admin/all_user', views.all_user, name='Tous_utilisateur'),
 ]
