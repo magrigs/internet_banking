@@ -70,43 +70,43 @@
 
 <body>
 	<!--header start-->
-	<header class="head-section">
-		<div class="navbar navbar-default navbar-static-top container">
-			<div class="navbar-header">
-				<button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" type="button">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-				<a class="navbar-brand" href="/">Système bancaire Internet</a>
-			</div>
-			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-					<li><a href="/">Home</a></li>
-					{% if request.session.authenticated %}	
-					<li><a href="/users/dashboard">Tableau de bord</a></li>
-					<li class="dropdown">
-						<a class="dropdown-toggle" data-close-others="false" data-delay="0" data-hover="dropdown" data-toggle="dropdown" href="#">Mon compte <i class="fa fa-angle-down"></i>
-                      </a>
-						<ul class="dropdown-menu">
-							<li><a href="/users/update/{{ request.session.user_id }}/">My Account</a></li>
-							<li><a href="/users/transfer">Transférer de l'argent</a></li>
-							<li><a href="/users/transactions">Mes Transactions</a></li>
-							<li><a href="/users/changepassword">Transférer de l'argent</a></li>
-						</ul>
-					</li>
-					<li><a href="/users/logout">Déconnexion</a></li>
-					{% else %}
-					<li><a href="/pages/about">propos de nous</a></li>
-					<li><a href="/users/add">Enregustrer</a></li>
-					<li><a href="/pages/contact">Contactez nous</a></li>
-					<li><a href="/users">Connexion</a></li>
-					{% endif %}
-				</ul>
-				</ul>
-			</div>
-		</div>
-	</header>
+{#	<header class="head-section">#}
+{#		<div class="navbar navbar-default navbar-static-top container">#}
+{#			<div class="navbar-header">#}
+{#				<button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" type="button">#}
+{#                <span class="icon-bar"></span>#}
+{#                <span class="icon-bar"></span>#}
+{#                <span class="icon-bar"></span>#}
+{#              </button>#}
+{#				<a class="navbar-brand" href="/">Système bancaire Internet</a>#}
+{#			</div>#}
+{#			<div class="navbar-collapse collapse">#}
+{#				<ul class="nav navbar-nav">#}
+{#					<li><a href="/">Home</a></li>#}
+{#					{% if request.session.authenticated %}	#}
+{#					<li><a href="/users/dashboard">Tableau de bord</a></li>#}
+{#					<li class="dropdown">#}
+{#						<a class="dropdown-toggle" data-close-others="false" data-delay="0" data-hover="dropdown" data-toggle="dropdown" href="#">Mon compte <i class="fa fa-angle-down"></i>#}
+{#                      </a>#}
+{#						<ul class="dropdown-menu">#}
+{#							<li><a href="/users/update/{{ request.session.user_id }}/">My Account</a></li>#}
+{#							<li><a href="/users/transfer">Transférer de l'argent</a></li>#}
+{#							<li><a href="/users/transactions">Mes Transactions</a></li>#}
+{#							<li><a href="/users/changepassword">Transférer de l'argent</a></li>#}
+{#						</ul>#}
+{#					</li>#}
+{#					<li><a href="/users/logout">Déconnexion</a></li>#}
+{#					{% else %}#}
+{#					<li><a href="/pages/about">propos de nous</a></li>#}
+{#					<li><a href="/users/add">Enregustrer</a></li>#}
+{#					<li><a href="/pages/contact">Contactez nous</a></li>#}
+{#					<li><a href="/users">Connexion</a></li>#}
+{#					{% endif %}#}
+{#				</ul>#}
+{#				</ul>#}
+{#			</div>#}
+{#		</div>#}
+{#	</header>#}
 	<!--header end-->
 	{% block content %} {% endblock content %}
 	<div class="modal fade" id="myModal-2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
