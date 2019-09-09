@@ -190,10 +190,11 @@ def deposit(request):
 
     return redirect('/users/dashboard')
 
-#my test
+
+# my test
 def index(request):
-    #if (request.session.get('authenticated', False) == True):
-   #     return redirect('/users/report') #le vrai code
+    # if (request.session.get('authenticated', False) == True):
+    #     return redirect('/users/report') #le vrai code
     #  return redirect('/users/login')
 
     context = {
@@ -225,6 +226,7 @@ def index(request):
             return render(request, 'login.html', context)
     else:
         return render(request, 'login.html', context)
+
 
 # Create your views here.
 # def index(request):
@@ -434,4 +436,32 @@ def delete(request, userId):
     return redirect('listing')
 
 
-#--------------------les fonction de l'adm---------------------------
+# --------------------les fonction de l'adm---------------------------
+
+#
+
+
+# def all_user(self):
+#
+#  inspirer de transaction
+def all_user(request):
+    cursor = connection.cursor()
+    cursor.execute(
+        "SELECT * FROM users_user")
+    datalist = dictfetchall(cursor)
+    #json_output = getTransactionJSON(request)
+    # graphData = {
+    #     "linecolor": "#152c3f",
+    #     "title": "Transactions",
+    #     "values": json_output
+    # };
+    #json_string = json.dumps(graphData)
+    context = {
+        "datalist": datalist,
+        #"graphData": json_string,
+        #"json_output": request.session.get('user_id', None)
+    }
+
+    # Message according Salary #
+    #context['heading'] = "Detailes Des Transactions ";
+    return render(request, 'admin/all_user.html', context)
