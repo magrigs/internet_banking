@@ -440,10 +440,6 @@ def delete(request, userId):
 def bg():
     return '../assets/login_asset/images/bg-01.jpg'
 
-
-#
-
-
 # def all_user(self):
 #
 #  inspirer de transaction
