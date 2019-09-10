@@ -24,7 +24,7 @@ urlpatterns = [
 
     # ------------------------------ admin -------------------------------
     url(r'^bg/', views.bg, name='bg'),
-    url(r'^admin/all_user', views.all_user, name='Tous_Utilisateur'),
+    url(r'^admin/all_user', views.all_user, name='Tous Utilisateur'),
 
 
 
