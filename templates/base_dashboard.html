@@ -194,7 +194,7 @@
 
               </a>
               <!-- Dropdown - User Information -->
-              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+             {% comment %} <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
@@ -212,7 +212,7 @@
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
                 </a>
-              </div>
+              </div>{% endcomment %}
             </li>
 
           </ul>
@@ -243,7 +243,7 @@
                           <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                               <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Solde</div>
-                              <div class="h5 mb-0 font-weight-bold text-gray-800">Solde Estimé</div>
+                              <div class="h5 mb-0 font-weight-bold text-gray-800">{{balance}}.00</div>
                             </div>
                             <div class="col-auto">
                               <i class="fas fa-calendar fa-2x text-gray-300"></i>
