@@ -59,29 +59,19 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="/users/estimated_balance"
-           data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
+        <a class="nav-link collapsed" href="/users/estimated_balance">
+          <i class="fas fa-fw fa-calendar"></i>
           <span>Solde</span>
         </a>
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#"
-           data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link collapsed" href="/users/deposit">
           <i class="fas fa-fw fa-wrench"></i>
           <span>Depôt</span>
         </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="utilities-color.html">Colors</a>
-            <a class="collapse-item" href="utilities-border.html">Borders</a>
-            <a class="collapse-item" href="utilities-animation.html">Animations</a>
-            <a class="collapse-item" href="utilities-other.html">Other</a>
-          </div>
-        </div>
+
       </li>
 
       <!-- Divider -->
@@ -228,6 +218,10 @@
                 <h3 class="h3 mb-0 text-gray-800">Tableau de Bord de l'Utilisateur</h3>
             </div>
 
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h5 class="h3 mb-0 text-gray-800">Bienvenue  {{ request.session.user_name }}</h5>
+            </div>
+
           <!-- Content Row -->
           <div class="row">
 
@@ -258,7 +252,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Depôt</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{balance}}</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>

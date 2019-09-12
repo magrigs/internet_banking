@@ -1,3 +1,56 @@
+
+{% extends 'base_all.html' %}
+
+{% block content %}
+
+
+<body class="bg-gradient-primary">
+
+  <div class="container">
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+          <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+          <div class="col-lg-7">
+            <div class="p-5">
+              <div class="text-center">
+                <h1 class="h3 text-gray-900 mb-4">{{ request.session.user_name }}</h1>
+              </div>
+                <hr>
+                <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4"> Votre Solde Actuel est : {{balance}} </h1>
+              </div>
+                <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4"> Votre Futur Solde Sera  : {{future}} </h1>
+              </div>
+
+
+              <form class="user">
+
+                <hr>
+                <a href="/users/dashboard.html" class="btn btn-outline-primary btn-user btn-block">
+                  <i class="fas fa-fw fa-tachometer-alt"></i> Retour
+                </a>
+
+              </form>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+{% endblock %}
+
+
+
+{% comment %}
+
 {% extends 'base.html' %} {% block content %}
 <!--breadcrumbs start-->
 <div class="breadcrumbs">
@@ -45,7 +98,7 @@
 			<input type="hidden" name="act" value="change_password">
 		</form>
 	</div>
- </div>
+ </div>{% endcomment %}
 <!--
 <script>
 // just for the demos, avoids form submit
@@ -69,4 +122,5 @@ $( "#changepass" ).validate({
 </style>
 -->
 <!--container end-->
-{% endblock content %}
+{#{% endblock content %}#}
+
