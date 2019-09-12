@@ -19,16 +19,14 @@
               </div>
                 <hr>
                 <div class="text-center">
-                <h1 class="h4 text-gray-900 mb-4"> Transfert de Fonds </h1>
+                <h1 class="h4 text-gray-900 mb-4"> Votre Solde actuel est : {{balance}} </h1>
               </div>
                 <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4"> Votre Futur Solde Sera  : {{future}} </h1>
               </div>
 
 
-              <form class="user" method="post" id="changepass">
-                {% csrf_token %}
-                  <label for="pwd">Select User {{data}}</label>
+              <form class="user">
 
                 <hr>
                 <a href="/users/dashboard.html" class="btn btn-outline-primary btn-user btn-block">

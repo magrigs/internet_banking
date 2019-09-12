@@ -20,20 +20,42 @@
               </div>
                 <hr>
                 <div class="text-center">
-                <h1 class="h4 text-gray-900 mb-4"> Votre Solde Actuel est : {{balance}} </h1>
-              </div>
-                <div class="text-center">
-                <h1 class="h4 text-gray-900 mb-4"> Votre Futur Solde Sera  : {{future}} </h1>
+                <h1 class="h4 text-gray-900 mb-4"> Transfert des Fonds </h1>
               </div>
 
 
-              <form class="user">
+
+              <form class="user" method="post" id="changepass">
+                {% csrf_token %}
+
+                  <label for="pwd">Selectionner L'utlisateur {{data}}</label>
+
+					<select name="transfer_user_id" required class="form-control" placeholder="User Name" autofocus="" />
+					<option value="">Please Select</option>
+					{% for employeename in employeetypelist %}
+						<option value="{{ employeename.user_id }}" {% ifequal employeename.user_id|stringformat:"s" salaryDetails.salary_user_id %}
+                                selected="selected"{% endifequal %}>{{employeename.user_name}}</option>
+					{% endfor %}
+					</select>
 
                 <hr>
-                <a href="/users/dashboard.html" class="btn btn-outline-primary btn-user btn-block">
+              <label for="pwd">Le Montant à Transfert</label>
+                <div class="form-group">
+                      <input type="text" class="form-control form-control-user"
+                             autofocus="" name="transfer_amount" id="transfer_amount"
+                             id="exampleInputEmail" aria-describedby="emailHelp" placeholder="le montant total à Transfert" required>
+                </div>
+              <div class="form-group">
+                <button class="btn btn-outline-success btn-user btn-block" type="submit" >
+                    <i class="fas fa-fw fa-money" ></i>Transferez les Fonds</button>
+              </div>
+                {% comment %}<a href="" class="btn btn-outline-success btn-user btn-block">
+                  <i class="fas fa-fw fa-send-o" type="submit" ></i> Transferez les Fonds
+                </a>{% endcomment %}
+                <a href="/users/dashboard.html" class="btn btn-outline-danger btn-user btn-block">
                   <i class="fas fa-fw fa-tachometer-alt"></i> Retour
                 </a>
-
+                <input type="hidden" name="act" value="change_password">
               </form>
 
 
