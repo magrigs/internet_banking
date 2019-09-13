@@ -36,8 +36,8 @@
     <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">{{ heading }} {{json_output}} </h1>
-{#          <p class="mb-4"> <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>#}
+          <h1 class="h3 m-auto m-t-10 mb-2 text-gray-800 lnr-text-align-center">LES DETAILS DE TRANSFERT </h1>
+{#          <p {{ heading }} {{json_output}} class="mb-4"> <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>#}
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
@@ -48,8 +48,15 @@
 			<strong>{{ message }}</strong> {% endfor %}
 		</div>
 		{% endif %}</h5>
-              <h6 class="m-0 font-weight-bold text-primary">les transferts</h6>
 
+
+              <h6 class="m-0 font-weight-bold text-primary bold">Les Transferts</h6>
+            <form class="user pull-left">
+                    <hr>
+                    <a href="/users/dashboard" class="btn btn-outline-warning btn-user">
+                      <i class="fab fa-backward fa-fw"></i> Tableau de Board
+                    </a>
+             </form>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -81,6 +88,12 @@
 								{% endfor %}
                   </tbody>
                 </table>
+              <form class="user pull-left">
+                    <hr>
+                    <a href="/users/dashboard" class="btn btn-outline-warning btn-user">
+                      <i class="fab fa-backward fa-fw"></i> Tableau de Board
+                    </a>
+             </form>
               </div>
             </div>
           </div>

@@ -7,6 +7,8 @@ from .models import role, user, city, state, country
 from django.contrib import messages
 from django.db import connection
 from internet_banking_system.utils import getDropDown, dictfetchall
+from datetime import datetime
+
 import json
 
 
@@ -99,7 +101,7 @@ def transfer(request):
             INSERT INTO `transaction`
             SET transaction_user_id=%s, transaction_type=%s, transaction_amount=%s, transaction_description=%s, transaction_date=%s   
         """, (request.POST['transfer_user_id'], "Credit", request.POST['transfer_amount'],
-              request.POST['transfer_amount'] + " credited to your account", "dfsdf"))
+              request.POST['transfer_amount'] + " a ete credite sur votre compte", "dfsdf"))
 
         # Debit the amount from source Account
         context = {
@@ -118,7 +120,7 @@ def transfer(request):
             INSERT INTO `transaction`
             SET transaction_user_id=%s, transaction_type=%s, transaction_amount=%s, transaction_description=%s, transaction_date=%s   
         """, (request.session.get('user_id', None), "Debit", request.POST['transfer_amount'],
-              request.POST['transfer_amount'] + " debited from your account", "dfsdf"))
+              request.POST['transfer_amount'] + " a ete debite sur votre compte", "dfsdf"))
 
         messages.add_message(request, messages.INFO, "Transfer of " + request.POST[
             'transfer_amount'] + "/- has been done succesfully to user account.")
