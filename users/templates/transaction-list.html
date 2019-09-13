@@ -1,4 +1,6 @@
-{% extends 'base.html' %} {% block content %}
+{#{% extends 'base.html' %}#}
+{% extends 'base_all.html' %}
+
 <script>
 	$(document).on("click", ".delete-dialog", function () {
 		var id = $(this).data('id');
@@ -29,9 +31,62 @@
 		});
 	});
 </script>
-
+{% block content %}
 <!--breadcrumbs start-->
+    <div class="container-fluid">
 
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">{{ heading }} {{json_output}} </h1>
+{#          <p class="mb-4"> <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>#}
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h5 class="m-0 font-weight-bold text-primary">{% if messages %}
+		<div class="alert alert-success fade in" style="margin:10px;">
+			{% for message in messages %}
+			<strong>{{ message }}</strong> {% endfor %}
+		</div>
+		{% endif %}</h5>
+              <h6 class="m-0 font-weight-bold text-primary">les transferts</h6>
+
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Sr. No.</th>
+                      <th>Date</th>
+                      <th>Type Opération</th>
+                        <th>Montants</th>
+
+                        <th>Details de Transation </th>
+
+                      <th>Montant restant</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for data in datalist %}
+								<tr>
+									<td>{{ forloop.counter }}</td>
+                                    <td>{{ data.transaction_date }}</td>
+                                    <td>{{data.transaction_type}}</td>
+									<td>{{data.transaction_amount}}</td>
+
+									<td>{{data.transaction_description}}</td>
+                                <td>----</td>
+								</tr>
+								{% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+{% comment %}
 <div class="breadcrumbs">
 	<div class="container">
 		<div class="row">
@@ -87,5 +142,5 @@
 			</form>
 		</div>
 	</div>
-</div>
+</div>{% endcomment %}
 {% endblock content %}
