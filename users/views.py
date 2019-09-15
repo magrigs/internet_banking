@@ -7,6 +7,9 @@ from .models import role, user, city, state, country
 from django.contrib import messages
 from django.db import connection
 from internet_banking_system.utils import getDropDown, dictfetchall
+
+from datetime import *
+
 import json
 
 
@@ -48,12 +51,20 @@ def estimated_balance(request):
     return render(request, 'estimated_balance.html', context)
 
 
-# Transactions Reports
+# Transactions Reports and i add this
 def transactions(request):
     cursor = connection.cursor()
     cursor.execute(
-        "SELECT * FROM transaction WHERE transaction_user_id =" + str(request.session.get('user_id', None)) + "")
+        "SELECT * FROM transaction   WHERE " +
+        "transaction_user_id=" + str(request.session.get('user_id', None)) +
+        " ")
     datalist = dictfetchall(cursor)
+    cursor.execute(
+        "SELECT * FROM account  WHERE " +
+        "account_user_id=" + str(request.session.get('user_id', None)) +
+        " ")
+    account = dictfetchall(cursor)
+
     json_output = getTransactionJSON(request)
     graphData = {
         "linecolor": "#152c3f",
@@ -62,6 +73,7 @@ def transactions(request):
     };
     json_string = json.dumps(graphData)
     context = {
+        "account": account,
         "datalist": datalist,
         "graphData": json_string,
         "json_output": request.session.get('user_id', None)
@@ -81,6 +93,9 @@ def getDropDown(table, condtion):
 
 # Dashboard of User
 def transfer(request):
+    today = date.today()
+
+
     context = {
         "fn": "add",
         "employeetypelist": getDropDown('users_user', 'user_id'),
@@ -99,7 +114,7 @@ def transfer(request):
             INSERT INTO `transaction`
             SET transaction_user_id=%s, transaction_type=%s, transaction_amount=%s, transaction_description=%s, transaction_date=%s   
         """, (request.POST['transfer_user_id'], "Credit", request.POST['transfer_amount'],
-              request.POST['transfer_amount'] + " credited to your account", "dfsdf"))
+              request.POST['transfer_amount'] + " a ete credite sur votre compte", today))
 
         # Debit the amount from source Account
         context = {
@@ -118,10 +133,10 @@ def transfer(request):
             INSERT INTO `transaction`
             SET transaction_user_id=%s, transaction_type=%s, transaction_amount=%s, transaction_description=%s, transaction_date=%s   
         """, (request.session.get('user_id', None), "Debit", request.POST['transfer_amount'],
-              request.POST['transfer_amount'] + " debited from your account", "dfsdf"))
+              request.POST['transfer_amount'] + " a ete debite sur votre compte", today))
 
-        messages.add_message(request, messages.INFO, "Transfer of " + request.POST[
-            'transfer_amount'] + "/- has been done succesfully to user account.")
+        messages.add_message(request, messages.INFO, "Transferer a " + request.POST[
+            'transfer_amount'] + "/- a ete faite avec success sur votre compte.")
 
     return render(request, 'transfer.html', context)
 
@@ -165,6 +180,7 @@ def getTransactionJSON(request, one=False):
 
 # Dashboard of User
 def deposit(request):
+    today = date.today()
     currentBalance = getData(int(request.session.get('user_id', None)))
     context = {
         "message": "Connectez - vous s.v.p ",
@@ -184,9 +200,9 @@ def deposit(request):
     cursor.execute("""
         INSERT INTO `transaction`
         SET transaction_user_id=%s, transaction_type=%s, transaction_amount=%s, transaction_description=%s, transaction_date=%s   
-    """, (request.session.get('user_id', None), "Credit", "500", "500 Credited to your account", "dfsdf"))
+    """, (request.session.get('user_id', None), "Credit", "500", "500 a ete credite sur votre compte", today))
 
-    messages.add_message(request, messages.INFO, "Your account has been credited with 500/-")
+    messages.add_message(request, messages.INFO, "Ton Compte a ete credite de   500/-")
 
     return redirect('/users/dashboard')
 
@@ -198,7 +214,7 @@ def index(request):
     #  return redirect('/users/login')
 
     context = {
-        "message": "Connectez - vous s.v.p",
+        "message": "Veillez vous Connectez  s.v.p",
         "error": False
     }
     if (request.method == "POST"):
@@ -446,7 +462,7 @@ def login_image():
 #---------------------------------------------------------------
 # def all_user(self):
 #
-#  inspirer de transaction
+#  inspirer de all user
 def all_user(request):
     cursor = connection.cursor()
     cursor.execute(
@@ -468,3 +484,25 @@ def all_user(request):
     # Message according Salary #
     # context['heading'] = "Detailes Des Transactions ";
     return render(request, 'admin/all_user.html', context)
+#-----------------------------------transaction with account
+def transactions_all_account(request):
+    cursor = connection.cursor()
+    cursor.execute(
+        "SELECT * FROM transaction WHERE transaction_user_id =" + str(request.session.get('user_id', None)) + "")
+    datalist = dictfetchall(cursor)
+    json_output = getTransactionJSON(request)
+    graphData = {
+        "linecolor": "#152c3f",
+        "title": "Transactions",
+        "values": json_output
+    };
+    json_string = json.dumps(graphData)
+    context = {
+        "datalist": datalist,
+        "graphData": json_string,
+        "json_output": request.session.get('user_id', None)
+    }
+
+    # Message according Salary #
+    context['heading'] = "Detailes Des Transactions ";
+    return render(request, 'transaction-list.html', context)

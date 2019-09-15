@@ -20,12 +20,26 @@
   <!-- Custom styles for this template-->
   <link href="/assets/design/css/sb-admin-2.min.css" rel="stylesheet">
 
+    <!--common script for all pages from base.html-->
+	<script src="/assets/js/common-scripts.js"></script>
+	<script src="/assets/js/wow.min.js"></script>
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+	<!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js">
+    </script>
+    <script src="/assets/js/respond.min.js">
+    </script>
+    <![endif]-->
+
 </head>
 
 
 
 
-        {% block content %}{% endblock %}
+        {% block content %}
+
+        {% endblock %}
 
 
 
@@ -59,6 +73,94 @@
       </div>
     </div>
   </div>
+
+<!--small footer end-->
+	<script>
+		wow = new WOW(
+			{
+				boxClass: 'wow',      // default
+				animateClass: 'animated', // default
+				offset: 0          // default
+			}
+		)
+		wow.init();
+	</script>
+
+
+	<script>
+		$(window).load(function () {
+			$('[data-zlname = reverse-effect]').mateHover({
+				position: 'y-reverse',
+				overlayStyle: 'rolling',
+				overlayBg: '#fff',
+				overlayOpacity: 0.7,
+				overlayEasing: 'easeOutCirc',
+				rollingPosition: 'top',
+				popupEasing: 'easeOutBack',
+				popup2Easing: 'easeOutBack'
+			}
+			);
+		}
+		);
+
+		$(window).load(function () {
+			$('.flexslider').flexslider({
+				animation: "slide",
+				start: function (slider) {
+					$('body').removeClass('loading');
+				}
+			}
+			);
+		}
+		);
+
+		$(document).ready(function () {
+
+			$("#owl-demo").owlCarousel({
+				items: 4,
+			}
+			);
+
+		}
+		);
+
+
+
+
+		$(window).scroll(function () {
+			$('#skillz').each(function () {
+				var imagePos = $(this).offset().top;
+				var viewportheight = window.innerHeight;
+				console.log(viewportheight);
+				var topOfWindow = $(window).scrollTop();
+				if (imagePos < topOfWindow + viewportheight) {
+					$('.skill_bar').fadeIn('slow');
+					$('.skill_one').animate({
+						width: '60%'
+					}
+						, 2000);
+					$('.skill_two').animate({
+						width: '90%'
+					}
+						, 2000);
+					$('.skill_three').animate({
+						width: '70%'
+					}
+						, 1000);
+					$('.skill_four').animate({
+						width: '55%'
+					}
+						, 1000);
+					$('.skill_bar_progress p').fadeIn('slow', function () {
+
+					}
+					);
+				}
+			}
+			);
+		}
+		);
+	</script>
 
   <!-- Bootstrap core JavaScript-->
   <script src="/assets/design/vendor/jquery/jquery.min.js"></script>
