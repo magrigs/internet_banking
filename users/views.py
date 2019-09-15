@@ -51,12 +51,20 @@ def estimated_balance(request):
     return render(request, 'estimated_balance.html', context)
 
 
-# Transactions Reports
+# Transactions Reports and i add this
 def transactions(request):
     cursor = connection.cursor()
     cursor.execute(
-        "SELECT * FROM transaction WHERE transaction_user_id =" + str(request.session.get('user_id', None)) + "")
+        "SELECT * FROM transaction   WHERE " +
+        "transaction_user_id=" + str(request.session.get('user_id', None)) +
+        " ")
     datalist = dictfetchall(cursor)
+    cursor.execute(
+        "SELECT * FROM account  WHERE " +
+        "account_user_id=" + str(request.session.get('user_id', None)) +
+        " ")
+    account = dictfetchall(cursor)
+
     json_output = getTransactionJSON(request)
     graphData = {
         "linecolor": "#152c3f",
@@ -65,6 +73,7 @@ def transactions(request):
     };
     json_string = json.dumps(graphData)
     context = {
+        "account": account,
         "datalist": datalist,
         "graphData": json_string,
         "json_output": request.session.get('user_id', None)
@@ -205,7 +214,7 @@ def index(request):
     #  return redirect('/users/login')
 
     context = {
-        "message": "Connectez - vous s.v.p",
+        "message": "Veillez vous Connectez  s.v.p",
         "error": False
     }
     if (request.method == "POST"):

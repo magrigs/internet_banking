@@ -75,7 +75,9 @@
                     </tr>
                   </thead>
                   <tbody>
+                  {% for a in account %}
                     {% for data in datalist %}
+
 								<tr>
 									<td>{{ forloop.counter }}</td>
                                     <td>{{ data.transaction_date }}</td>
@@ -83,7 +85,8 @@
 									<td>{{data.transaction_amount}}</td>
 
 									<td>{{data.transaction_description}}</td>
-                                <td>----</td>
+                                <td> {{ a.account_amount }}</td>
+                                {% endfor %}
 								</tr>
 								{% endfor %}
                   </tbody>
