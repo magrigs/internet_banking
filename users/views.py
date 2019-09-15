@@ -126,8 +126,8 @@ def transfer(request):
         """, (request.session.get('user_id', None), "Debit", request.POST['transfer_amount'],
               request.POST['transfer_amount'] + " a ete debite sur votre compte", today))
 
-        messages.add_message(request, messages.INFO, "Transfer of " + request.POST[
-            'transfer_amount'] + "/- has been done succesfully to user account.")
+        messages.add_message(request, messages.INFO, "Transferer a " + request.POST[
+            'transfer_amount'] + "/- a ete faite avec success sur votre compte.")
 
     return render(request, 'transfer.html', context)
 
@@ -453,7 +453,7 @@ def login_image():
 #---------------------------------------------------------------
 # def all_user(self):
 #
-#  inspirer de transaction
+#  inspirer de all user
 def all_user(request):
     cursor = connection.cursor()
     cursor.execute(
@@ -475,3 +475,25 @@ def all_user(request):
     # Message according Salary #
     # context['heading'] = "Detailes Des Transactions ";
     return render(request, 'admin/all_user.html', context)
+#-----------------------------------transaction with account
+def transactions_all_account(request):
+    cursor = connection.cursor()
+    cursor.execute(
+        "SELECT * FROM transaction WHERE transaction_user_id =" + str(request.session.get('user_id', None)) + "")
+    datalist = dictfetchall(cursor)
+    json_output = getTransactionJSON(request)
+    graphData = {
+        "linecolor": "#152c3f",
+        "title": "Transactions",
+        "values": json_output
+    };
+    json_string = json.dumps(graphData)
+    context = {
+        "datalist": datalist,
+        "graphData": json_string,
+        "json_output": request.session.get('user_id', None)
+    }
+
+    # Message according Salary #
+    context['heading'] = "Detailes Des Transactions ";
+    return render(request, 'transaction-list.html', context)
