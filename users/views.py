@@ -55,15 +55,11 @@ def estimated_balance(request):
 def transactions(request):
     cursor = connection.cursor()
     cursor.execute(
-        "SELECT * FROM transaction   WHERE " +
-        "transaction_user_id=" + str(request.session.get('user_id', None)) +
+        "SELECT * FROM mytransaction  WHERE " +
+        "mytransaction_user_id=" + str(request.session.get('user_id', None)) +
         " ")
     datalist = dictfetchall(cursor)
-    cursor.execute(
-        "SELECT * FROM account  WHERE " +
-        "account_user_id=" + str(request.session.get('user_id', None)) +
-        " ")
-    account = dictfetchall(cursor)
+
 
     json_output = getTransactionJSON(request)
     graphData = {
@@ -73,7 +69,7 @@ def transactions(request):
     };
     json_string = json.dumps(graphData)
     context = {
-        "account": account,
+
         "datalist": datalist,
         "graphData": json_string,
         "json_output": request.session.get('user_id', None)
@@ -111,10 +107,10 @@ def transfer(request):
         """, (amount, request.POST['transfer_user_id']))
 
         cursor.execute("""
-            INSERT INTO `transaction`
-            SET transaction_user_id=%s, transaction_type=%s, transaction_amount=%s, transaction_description=%s, transaction_date=%s   
+            INSERT INTO `mytransaction`
+            SET mytransaction_user_id=%s, mytransaction_type=%s, mytransaction_amount=%s, mytransaction_description=%s, mytransaction_date=%s, montant_restant=%s   
         """, (request.POST['transfer_user_id'], "Credit", request.POST['transfer_amount'],
-              request.POST['transfer_amount'] + " a ete credite sur votre compte", today))
+              request.POST['transfer_amount'] + " a ete credite sur votre compte", today, amount))
 
         # Debit the amount from source Account
         context = {
@@ -130,10 +126,10 @@ def transfer(request):
         """, (amount, request.session.get('user_id', None)))
 
         cursor.execute("""
-            INSERT INTO `transaction`
-            SET transaction_user_id=%s, transaction_type=%s, transaction_amount=%s, transaction_description=%s, transaction_date=%s   
+            INSERT INTO `mytransaction`
+            SET mytransaction_user_id=%s, mytransaction_type=%s, mytransaction_amount=%s, mytransaction_description=%s, mytransaction_date=%s, montant_restant=%s   
         """, (request.session.get('user_id', None), "Debit", request.POST['transfer_amount'],
-              request.POST['transfer_amount'] + " a ete debite sur votre compte", today))
+              request.POST['transfer_amount'] + " a ete debite sur votre compte", today, amount))
 
         messages.add_message(request, messages.INFO, "Transferer a " + request.POST[
             'transfer_amount'] + "/- a ete faite avec success sur votre compte.")
@@ -167,13 +163,13 @@ def dictfetchall(cursor):
 
 def getTransactionJSON(request, one=False):
     cur = connection.cursor()
-    cur.execute("SELECT transaction_amount FROM transaction WHERE transaction_user_id =" + str(
+    cur.execute("SELECT mytransaction_amount FROM   mytransaction WHERE mytransaction_user_id =" + str(
         request.session.get('user_id', None)) + "")
     dataList = dictfetchall(cur)
     transactionJson = {'list': []}
     i = 0
     for key in dataList:
-        transactionJson['list'].append({"X": i + 1, "Y": int(key['transaction_amount'])})
+        transactionJson['list'].append({"X": i + 1, "Y": int(key['mytransaction_amount'])})
         i = i + 1
     return transactionJson['list']
 
@@ -198,9 +194,9 @@ def deposit(request):
 
     # Update the Transactions
     cursor.execute("""
-        INSERT INTO `transaction`
-        SET transaction_user_id=%s, transaction_type=%s, transaction_amount=%s, transaction_description=%s, transaction_date=%s   
-    """, (request.session.get('user_id', None), "Credit", "500", "500 a ete credite sur votre compte", today))
+        INSERT INTO `mytransaction`
+        SET mytransaction_user_id=%s, mytransaction_type=%s, mytransaction_amount=%s, mytransaction_description=%s, mytransaction_date=%s ,montant_restant=%s  
+    """, (request.session.get('user_id', None), "Credit", "500", "500 a ete credite sur votre compte", today, amount))
 
     messages.add_message(request, messages.INFO, "Ton Compte a ete credite de   500/-")
 
@@ -488,7 +484,7 @@ def all_user(request):
 def transactions_all_account(request):
     cursor = connection.cursor()
     cursor.execute(
-        "SELECT * FROM transaction WHERE transaction_user_id =" + str(request.session.get('user_id', None)) + "")
+        "SELECT * FROM mytransaction WHERE mytransaction_user_id =" + str(request.session.get('user_id', None)) + "")
     datalist = dictfetchall(cursor)
     json_output = getTransactionJSON(request)
     graphData = {

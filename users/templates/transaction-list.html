@@ -75,18 +75,18 @@
                     </tr>
                   </thead>
                   <tbody>
-                  {% for a in account %}
+
                     {% for data in datalist %}
 
 								<tr>
 									<td>{{ forloop.counter }}</td>
-                                    <td>{{ data.transaction_date }}</td>
-                                    <td>{{data.transaction_type}}</td>
-									<td>{{data.transaction_amount}}</td>
+                                    <td>{{ data.mytransaction_date }}</td>
+                                    <td>{{data.mytransaction_type}}</td>
+									<td>{{data.mytransaction_amount}}</td>
 
-									<td>{{data.transaction_description}}</td>
-                                <td> {{ a.account_amount }}</td>
-                                {% endfor %}
+									<td>{{data.mytransaction_description}}</td>
+                                    <td> {{ data.montant_restant }}</td>
+
 								</tr>
 								{% endfor %}
                   </tbody>
