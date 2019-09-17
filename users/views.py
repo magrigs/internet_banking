@@ -420,22 +420,30 @@ def logout(request):
     return redirect('/')
 
 
-def changepassword(request):
-    if (request.method == "POST"):
-        try:
-            addUser = user(
-                user_id=request.session.get('user_id', None),
-                user_password=request.POST['user_new_password']
-            )
-            addUser.save(update_fields=["user_password"])
-        except Exception, e:
-            return HttpResponse('Something went wrong. Error Message : ' + str(e))
-        messages.add_message(request, messages.INFO, "Your Password has been changed successfully !!!")
-        return render(request, 'change-password.html')
 
+
+
+def changepassword(request):
+
+    if request.method == "POST":
+        user_password = request.POST['user_new_password']
+        user_confirm = request.POST['user_confirm_password']
+        if user_password == user_confirm:
+            try:
+                addUser = user(
+                    user_id=request.session.get('user_id', None),
+                    user_password=request.POST['user_new_password']
+                )
+                addUser.save(update_fields=["user_password"])
+            except Exception, e:
+                return HttpResponse('Something went wrong. Error Message : ' + str(e))
+            msg="Your Password has been changed successfully !!!"
+            return render(request, 'change-password.html')
+        else:
+            msg="le mot de passe de confirmation est incorrecte"
+            return render(request, 'change-password.html')
     else:
         return render(request, 'change-password.html')
-    return render(request, 'change-password.html')
 
 
 def delete(request, userId):

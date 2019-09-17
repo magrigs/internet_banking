@@ -68,14 +68,13 @@
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="/users/deposit">
-          <i class="fas fa-fw fa-wrench"></i>
+          <i class="fas fa-fw fa-dollar-sign"></i>
           <span>Depôt</span>
         </a>
 
       </li>
 
-      <!-- Divider -->
-      <hr class="sidebar-divider">
+
 
       <!-- Heading -->
 
@@ -86,21 +85,29 @@
       <!-- Nav Item - Charts -->
       <li class="nav-item">
         <a class="nav-link" href="/users/transfer">
-          <i class="fas fa-fw fa-chart-area"></i>
+          <i class="fas fa-fw fa-random"></i>
           <span>Transfert</span></a>
       </li>
+        <!-- Divider -->
+      <hr class="sidebar-divider">
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
         <a class="nav-link" href="/users/transactions">
-          <i class="fas fa-fw fa-table"></i>
+          <i class="fas fa-fw fa-eye"></i>
           <span>Transactions</span></a>
+      </li>
+
+        <li class="nav-item">
+        <a class="nav-link" href="/users/changepassword">
+          <i class="fas fa-fw fa-lock"></i>
+          <span>change de mot de passe</span></a>
       </li>
 
         <!-- Nav Item - Tables -->
       <li class="nav-item">
         <a class="nav-link" href="/users/logout">
-          <i class="fas fa-fw fa-table"></i>
+          <i class="fas fa-fw fa-sign-out-alt"></i>
           <span>Déconnection</span></a>
       </li>
 
@@ -179,26 +186,7 @@
                 </span>
 
               </a>
-              <!-- Dropdown - User Information -->
-              {% comment %}<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
-                </a>
-              </div>{% endcomment %}
+
             </li>
 
           </ul>
@@ -210,17 +198,19 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <div class="d-sm-flex align-items-center justify-content-between mb-4 text-uppercase ">
               <h1>Système Bancaire en ligne</h1></b>
           </div>
             <hr>
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h3 class="h3 mb-0 text-gray-800">Tableau de Bord de l'Utilisateur</h3>
+                <h3 class="h3 mb-0 text-gray-800 text-uppercase">
+                    Tableau de Bord de l'Utilisateur : {{ request.session.user_name }}</h3>
             </div>
+            <hr>
 
-            <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h5 class="h3 mb-0 text-gray-800">Bienvenue  {{ request.session.user_name }}</h5>
-            </div>
+            {% comment %}<div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h5 class="h3 mb-0 text-gray-800">Bienvenue  </h5>
+            </div>{% endcomment %}
 
           <!-- Content Row -->
           <div class="row">
@@ -273,17 +263,17 @@
                       <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Transfert</div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                          {% comment %}<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>{% endcomment %}
                         </div>
-                        <div class="col">
+                        {% comment %}<div class="col">
                           <div class="progress progress-sm mr-2">
                             <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                           </div>
-                        </div>
+                        </div>{% endcomment %}
                       </div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                      <i class="fas fa-random fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
@@ -299,10 +289,10 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Toutes Transactions</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                      {% comment %}div class="h5 mb-0 font-weight-bold text-gray-800">18</div>{% endcomment %}
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-comments fa-2x text-gray-300"></i>
+                      <i class="fas fa-eye fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
@@ -321,7 +311,7 @@
                       <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-fw fa-wrench fa-2x text-gray-300"></i>
+                      <i class="fas fa-fw fa-lock fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
