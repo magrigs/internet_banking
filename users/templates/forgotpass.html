@@ -1,3 +1,156 @@
+{% extends 'base_all.html' %}
+{% block img %}dollar.jpg{% endblock %}
+{% block content %}
+
+
+
+            {% comment %}debut du content{% endcomment %}
+                <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4 text-uppercase"> Mot de passe Oublié </h1>
+                 <h5 class=" text-danger-900 mb-2 "> Remplir ces champs </h5>
+              </div>
+                <hr>
+
+
+              <form class="user" method="post" id="changepass">
+                {% csrf_token %}
+                {% if messages %}
+				<div class="alert alert-success fade in" style="margin:10px;">
+					{% for message in messages %}
+						<strong>{{ message }}</strong>
+					{% endfor %}
+				</div>
+			    {% endif %}
+                    <div class="form-group">
+                      <input type="text" class="form-control form-control-user"
+                             autofocus="" name="identifiant" id="transfer_amount"
+                             id="exampleInputEmail" aria-describedby="emailHelp"
+                             placeholder="identifiant" required>
+                    </div>
+
+
+                <div class="form-group">
+                      <input type="text" class="form-control form-control-user"
+                             autofocus="" name="nom" id="transfer_amount"
+                             id="exampleInputEmail" aria-describedby="emailHelp"
+                             placeholder="nom" required>
+                </div>
+                <div class="form-group">
+                      <input type="email" class="form-control form-control-user"
+                             autofocus="" name="email" id="transfer_amount"
+                             aria-describedby="emailHelp"
+                             placeholder="email" required>
+                </div>
+                <div class="form-group">
+                        <input type="text" class="form-control form-control-user"
+                             autofocus="" name="codeidsf" id="transfer_amount"
+                             id="exampleInputEmail" aria-describedby="emailHelp"
+                             placeholder="code idsf" required>
+                </div>
+                <div class="form-group">
+                        <input type="text" class="form-control form-control-user"
+                             autofocus="" name="numerocompte" id="transfer_amount"
+                             id="exampleInputEmail" aria-describedby="emailHelp"
+                             placeholder="numero de compte" required>
+                </div>
+
+                {% comment %}<a href="" class="btn btn-outline-success btn-user btn-block">
+                  <i class="fas fa-fw fa-send-o" type="submit" ></i> Transferez les Fonds
+                </a>{% endcomment %}
+              <div class="form-group" style="text-align:right;">
+					<button class="btn btn-outline-dark btn-user btn-block" type="submit" >
+                        <i class="fas fa-fw fa-send-o"></i>Restaurer</button>
+              </div>
+
+                <input type="hidden" name="act" value="change_password">
+               <div class="form-group" style="text-align:right;">
+					<a href="/users/logout"
+                       class="btn btn-outline-danger btn-user btn-block">
+                        <i class="fas fa-fw fa-backward-o"></i>Retour</a>
+              </div>
+              </form>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+{% endblock %}
+{% comment %}
+{% extends 'base.html' %} {% block content %}
+<!--breadcrumbs start-->
+<div class="breadcrumbs">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4 col-sm-4">
+				<h1>Change Password</h1>
+			</div>
+		</div>
+	</div>
+</div>
+<!--breadcrumbs end-->
+
+<!--container start-->
+<div class="registration-bg">
+	<div class="container">
+		<form method="post" class="form-signin wow fadeInUp" id="changepass" style="max-width:800px">
+			{% csrf_token %}
+			<h2 class="form-signin-heading">Change Password</h2>
+			{% if messages %}
+				<div class="alert alert-success fade in" style="margin:10px;">
+					{% for message in messages %}
+						<strong>{{ message }}</strong>
+					{% endfor %}
+				</div>
+			{% endif %}
+			<div class="login-wrap">
+				<div class="form-group">
+					<label for="pwd">New Password</label>
+					<input type="password" class="form-control" placeholder="New Password" required autofocus="" name="user_new_password" id="user_new_password">
+				</div>
+				<div class="form-group">
+					<label for="pwd">Confirm Password</label>
+					<input type="password" class="form-control" placeholder="Confirm Password" required autofocus="" name="user_confirm_password" id="user_confirm_password">
+				</div>
+				<div class="form-group" style="text-align:right;">
+					<button class="btn btn-lg btn-login btn-block" type="submit" style="width:200px;">Change Password</button>
+				</div>
+			</div>
+			<input type="hidden" name="act" value="change_password">
+		</form>
+	</div>
+ </div>
+<!--
+<script>
+// just for the demos, avoids form submit
+jQuery.validator.setDefaults({
+  debug: true,
+  success: "valid"
+});
+$( "#changepass" ).validate({
+  rules: {
+    user_new_password: "required",
+    user_confirm_password: {
+      equalTo: "#user_new_password"
+    }
+  }
+});
+</script>
+<style>
+.error {
+    color: #ff0000;
+}
+</style>
+-->
+<!--container end-->
+{% endblock content %}
+{% endcomment %}
+
+
 
 {% comment %}<body>
   <div class="wrapper">
