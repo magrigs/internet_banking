@@ -1,0 +1,178 @@
+{% load static from staticfiles%}
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>tableau de bord</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="/assets/design/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="/assets/design/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!--common script for all pages from base.html-->
+	<script src="/assets/js/common-scripts.js"></script>
+	<script src="/assets/js/wow.min.js"></script>
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+	<!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.js">
+    </script>
+    <script src="/assets/js/respond.min.js">
+    </script>
+    <![endif]-->
+
+</head>
+<body class="bg-gradient-primary">
+
+
+       {% block content %}
+
+        {% endblock %}
+
+
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+
+
+
+  <!-- Logout Modal-->
+
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="login.html">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!--small footer end-->
+	<script>
+		wow = new WOW(
+			{
+				boxClass: 'wow',      // default
+				animateClass: 'animated', // default
+				offset: 0          // default
+			}
+		)
+		wow.init();
+	</script>
+
+
+	<script>
+		$(window).load(function () {
+			$('[data-zlname = reverse-effect]').mateHover({
+				position: 'y-reverse',
+				overlayStyle: 'rolling',
+				overlayBg: '#fff',
+				overlayOpacity: 0.7,
+				overlayEasing: 'easeOutCirc',
+				rollingPosition: 'top',
+				popupEasing: 'easeOutBack',
+				popup2Easing: 'easeOutBack'
+			}
+			);
+		}
+		);
+
+		$(window).load(function () {
+			$('.flexslider').flexslider({
+				animation: "slide",
+				start: function (slider) {
+					$('body').removeClass('loading');
+				}
+			}
+			);
+		}
+		);
+
+		$(document).ready(function () {
+
+			$("#owl-demo").owlCarousel({
+				items: 4,
+			}
+			);
+
+		}
+		);
+
+
+
+
+		$(window).scroll(function () {
+			$('#skillz').each(function () {
+				var imagePos = $(this).offset().top;
+				var viewportheight = window.innerHeight;
+				console.log(viewportheight);
+				var topOfWindow = $(window).scrollTop();
+				if (imagePos < topOfWindow + viewportheight) {
+					$('.skill_bar').fadeIn('slow');
+					$('.skill_one').animate({
+						width: '60%'
+					}
+						, 2000);
+					$('.skill_two').animate({
+						width: '90%'
+					}
+						, 2000);
+					$('.skill_three').animate({
+						width: '70%'
+					}
+						, 1000);
+					$('.skill_four').animate({
+						width: '55%'
+					}
+						, 1000);
+					$('.skill_bar_progress p').fadeIn('slow', function () {
+
+					}
+					);
+				}
+			}
+			);
+		}
+		);
+	</script>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="/assets/design/vendor/jquery/jquery.min.js"></script>
+  <script src="/assets/design/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="/assets/design/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="/assets/design/js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="/assets/design/vendor/chart.js/Chart.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="/assets/design/js/demo/chart-area-demo.js"></script>
+  <script src="/assets/design/js/demo/chart-pie-demo.js"></script>
+
+</body>
+
+</html>
+
