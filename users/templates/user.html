@@ -34,22 +34,22 @@
               <form class="user" method="post" id="changepass">
                 {% csrf_token %}
 
-              <label for="pwd">Le Montant à Transfert</label>
+
                 <div class="form-group">
                       <input type="text" class="form-control form-control-user"
-                             autofocus="" name="transfer_amount" id="transfer_amount"
+                             autofocus="" name="user_name" id=""
                              id="exampleInputEmail" aria-describedby="emailHelp"
-                             placeholder="le montant total à Transfert" required>
+                             placeholder="nom" required>
                 </div>
               <div class="form-group">
                 <button class="btn btn-outline-success btn-user btn-block" type="submit" >
-                    <i class="fas fa-fw fa-money" ></i>Transferez les Fonds</button>
+                    <i class="fas fa-fw fa-check" ></i>Enregistrer</button>
               </div>
                 {% comment %}<a href="" class="btn btn-outline-success btn-user btn-block">
                   <i class="fas fa-fw fa-send-o" type="submit" ></i> Transferez les Fonds
                 </a>{% endcomment %}
-                <a href="/users/dashboard.html" class="btn btn-outline-danger btn-user btn-block">
-                  <i class="fas fa-fw fa-tachometer-alt"></i> Retour
+                <a href="/users/dashboard_admin.html" class="btn btn-outline-danger btn-user btn-block">
+                  <i class="fas fa-fw fa-times"></i> Retour
                 </a>
                 <input type="hidden" name="act" value="change_password">
               </form>
