@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base_list.html' %} {% block content %}
 <script>
 	$(document).on("click", ".delete-dialog", function () {
 		var id = $(this).data('id');
@@ -43,7 +43,78 @@
 		</div>
 	</div>
 </div>
+
+
+
+
+
+<!--breadcrumbs start-->
+    <div class="container-fluid">
+    <div class="card o-hidden border-0 shadow-lg my-5">
+          <!-- Page Heading -->
+
+{#          <p {{ heading }} {{json_output}} class="mb-4"> <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>#}
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4 ">
+            <div class="card-header py-3 mt-10">
+
+              <h6 class=" mb-4 mt-10 font-weight-bold text-primary bold text-uppercase">La Liste Des Utilisateurs</h6>
+            <form class="user pull-left">
+                    <hr>
+                    <a href="/users/dashboard_admin" class="btn btn-outline-warning btn-back ">
+                      <i class="fas fa-tachometer-alt fa-fw"></i> Tableau de Board
+                    </a>
+             </form>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                                    <th>id</th>
+									<th >Identifiant</th>
+									<th>Nom</th>
+                                    <th>telephone</th>
+                                    <th>email</th>
+                                    <th>mot de passe</th>
+                                    <th>numero de compte</th>
+                                    <th>code ifscc</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    {% for data in datalist %}
+
+								<tr>
+									<td>{{data.user_id}}</td>
+									<td>{{data.user_username}}</td>
+									<td>{{data.user_name}}</td>
+                                    <td>{{data.user_mobile}}</td>
+                                    <td>{{data.user_email}}</td>
+                                    <td>{{data.user_password}}</td>
+                                     <td>{{data.user_account_no}}</td>
+                                    <td>{{data.user_ifsc_no}}</td>
+
+								</tr>
+								{% endfor %}
+                  </tbody>
+                </table>
+              <form class="user pull-left">
+                    <hr>
+                    <a href="/users/dashboard_admin" class="btn btn-outline-warning btn-user">
+                      <i class="fas fa-tachometer-alt fa-fw"></i> Tableau de Board
+                    </a>
+             </form>
+              </div>
+            </div>
+          </div>
+
+        </div>
+    {% endblock %}
 <!--breadcrumbs end-->
+{% comment %}
 
 <div class="container">
 	<div class="row">
@@ -86,4 +157,4 @@
 		</div>
 	</div>
 </div>
-{% endblock content %}
+{% endblock content %}{% endcomment %}
