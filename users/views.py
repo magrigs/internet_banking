@@ -9,6 +9,7 @@ from django.db import connection
 from internet_banking_system.utils import getDropDown, dictfetchall
 
 from datetime import *
+import datetime
 
 import json
 
@@ -89,7 +90,7 @@ def getDropDown(table, condtion):
 
 # Dashboard of User
 def transfer(request):
-    today = date.today()
+    today = datetime.datetime.now()
 
 
     context = {
@@ -176,7 +177,7 @@ def getTransactionJSON(request, one=False):
 
 # Dashboard of User
 def deposit(request):
-    today = date.today()
+    today = datetime.datetime.now()
     currentBalance = getData(int(request.session.get('user_id', None)))
     context = {
         "message": "Connectez - vous s.v.p ",
