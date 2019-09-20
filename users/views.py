@@ -174,7 +174,7 @@ def dictfetchall(cursor):
 
 def getTransactionJSON(request, one=False):
     cur = connection.cursor()
-    cur.execute("SELECT mytransaction_amount FROM   mytransaction WHERE mytransaction_user_id =" + str(
+    cur.execute("SELECT mytransaction_amount FROM   mytransaction   WHERE mytransaction_user_id =" + str(
         request.session.get('user_id', None)) + "")
     dataList = dictfetchall(cur)
     transactionJson = {'list': []}
@@ -207,7 +207,7 @@ def deposit(request):
     cursor.execute("""
         INSERT INTO `mytransaction`
         SET mytransaction_user_id=%s, mytransaction_type=%s, mytransaction_amount=%s, mytransaction_description=%s, mytransaction_date=%s ,montant_restant=%s  
-    """, (request.session.get('user_id', None), "Credit", "500", "500 a ete credite sur votre compte", today, amount))
+    """, (request.session.get('user_id', None), "Credit", "500", "Vous avez fait un depot de 500", today, amount))
 
     messages.add_message(request, messages.INFO, "Ton Compte a ete credite de   500/-")
 
@@ -221,7 +221,7 @@ def index(request):
     #  return redirect('/users/login')
 
     context = {
-        "message": "Veillez vous Connectez  s.v.p",
+        "message": "Veuillez vous Connectez  s.v.p",
         "error": False
     }
     if (request.method == "POST"):
