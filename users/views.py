@@ -119,7 +119,7 @@ def transfer(request):
             INSERT INTO `mytransaction`
             SET mytransaction_user_id=%s, mytransaction_type=%s, mytransaction_amount=%s, mytransaction_description=%s, mytransaction_date=%s, montant_restant=%s   
         """, (request.POST['transfer_user_id'], "Credit", request.POST['transfer_amount'],
-             "Vous avez recu " + request.POST['transfer_amount'] + " a ete credite sur votre compte" + str(table[0]['user_name']), today, amount))
+             "Vous avez recu " + request.POST['transfer_amount'] + " sur votre compte venant de " + str(table[0]['user_name']), today, amount))
 
         # Debit the amount from source Account
         context = {
