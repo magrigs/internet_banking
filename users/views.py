@@ -61,7 +61,6 @@ def transactions(request):
         " ")
     datalist = dictfetchall(cursor)
 
-
     json_output = getTransactionJSON(request)
     graphData = {
         "linecolor": "#152c3f",
@@ -92,9 +91,6 @@ def getDropDown(table, condtion):
 def transfer(request):
     today = datetime.datetime.now()
 
-
-
-
     context = {
         "fn": "add",
         "employeetypelist": getDropDown('users_user', 'user_id'),
@@ -104,11 +100,15 @@ def transfer(request):
         # Credit the amount to Destination Account
         currentBalance = getData(request.POST['transfer_user_id'])
         amount = int(currentBalance['account_amount']) + int(request.POST['transfer_amount'])
-
+        # credit --------------------------
         cursor.execute("SELECT * FROM   users_user WHERE user_id =" + str(
             request.session.get('user_id', None)) + "")
         table = dictfetchall(cursor)
-        # ----------------
+        # ----------------debit
+        cursor.execute("SELECT * FROM   users_user WHERE user_id =" + str(request.POST['transfer_user_id']) + "")
+        table2 = dictfetchall(cursor)
+
+        # --------------------------------------------
 
         cursor.execute("""
             UPDATE account
@@ -119,7 +119,8 @@ def transfer(request):
             INSERT INTO `mytransaction`
             SET mytransaction_user_id=%s, mytransaction_type=%s, mytransaction_amount=%s, mytransaction_description=%s, mytransaction_date=%s, montant_restant=%s   
         """, (request.POST['transfer_user_id'], "Credit", request.POST['transfer_amount'],
-             "Vous avez recu " + request.POST['transfer_amount'] + " sur votre compte venant de " + str(table[0]['user_name']), today, amount))
+              "Vous avez recu " + request.POST['transfer_amount'] + " sur votre compte venant de " + str(
+                  table[0]['user_name']), today, amount))
 
         # Debit the amount from source Account
         context = {
@@ -138,7 +139,8 @@ def transfer(request):
             INSERT INTO `mytransaction`
             SET mytransaction_user_id=%s, mytransaction_type=%s, mytransaction_amount=%s, mytransaction_description=%s, mytransaction_date=%s, montant_restant=%s   
         """, (request.session.get('user_id', None), "Debit", request.POST['transfer_amount'],
-              request.POST['transfer_amount'] + " a ete debite sur votre compte", today, amount))
+              " vous avez envoye " + request.POST['transfer_amount'] + "  sur  compte de " + str(
+                  table2[0]['user_name']), today, amount))
 
         messages.add_message(request, messages.INFO, "Transferer a " + request.POST[
             'transfer_amount'] + "/- a ete faite avec success sur votre compte.")
@@ -429,11 +431,7 @@ def logout(request):
     return redirect('/')
 
 
-
-
-
 def changepassword(request):
-
     if request.method == "POST":
         user_password = request.POST['user_new_password']
         user_confirm = request.POST['user_confirm_password']
@@ -446,10 +444,10 @@ def changepassword(request):
                 addUser.save(update_fields=["user_password"])
             except Exception, e:
                 return HttpResponse('Something went wrong. Error Message : ' + str(e))
-            msg="Your Password has been changed successfully !!!"
+            msg = "Your Password has been changed successfully !!!"
             return render(request, 'change-password.html')
         else:
-            msg="le mot de passe de confirmation est incorrecte"
+            msg = "le mot de passe de confirmation est incorrecte"
             return render(request, 'change-password.html')
     else:
         return render(request, 'change-password.html')
@@ -469,10 +467,12 @@ def delete(request, userId):
 def bg():
     return '../assets/login_asset/images/bg-01.jpg'
 
+
 def login_image():
     return '../assets/design/img/login.jpg'
 
-#---------------------------------------------------------------
+
+# ---------------------------------------------------------------
 # def all_user(self):
 #
 #  inspirer de all user
@@ -497,7 +497,9 @@ def all_user(request):
     # Message according Salary #
     # context['heading'] = "Detailes Des Transactions ";
     return render(request, 'admin/all_user.html', context)
-#-----------------------------------transaction with account
+
+
+# -----------------------------------transaction with account
 def transactions_all_account(request):
     cursor = connection.cursor()
     cursor.execute(
