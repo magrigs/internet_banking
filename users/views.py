@@ -93,6 +93,8 @@ def transfer(request):
     today = datetime.datetime.now()
 
 
+
+
     context = {
         "fn": "add",
         "employeetypelist": getDropDown('users_user', 'user_id'),
@@ -102,6 +104,12 @@ def transfer(request):
         # Credit the amount to Destination Account
         currentBalance = getData(request.POST['transfer_user_id'])
         amount = int(currentBalance['account_amount']) + int(request.POST['transfer_amount'])
+
+        cursor.execute("SELECT * FROM   users_user WHERE user_id =" + str(
+            request.session.get('user_id', None)) + "")
+        table = dictfetchall(cursor)
+        # ----------------
+
         cursor.execute("""
             UPDATE account
             SET account_amount=%s WHERE  account_user_id=%s  
@@ -111,7 +119,7 @@ def transfer(request):
             INSERT INTO `mytransaction`
             SET mytransaction_user_id=%s, mytransaction_type=%s, mytransaction_amount=%s, mytransaction_description=%s, mytransaction_date=%s, montant_restant=%s   
         """, (request.POST['transfer_user_id'], "Credit", request.POST['transfer_amount'],
-              request.POST['transfer_amount'] + " a ete credite sur votre compte", today, amount))
+             "Vous avez recu " + request.POST['transfer_amount'] + " a ete credite sur votre compte" + str(table[0]['user_name']), today, amount))
 
         # Debit the amount from source Account
         context = {
