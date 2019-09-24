@@ -1,3 +1,5 @@
+from cProfile import help
+
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.conf import settings
@@ -481,22 +483,37 @@ def all_user(request):
     cursor.execute(
         "SELECT * FROM users_user where user_username not in (select distinct user_username from users_user  where user_username ='admin') group by user_name ")
     datalist = dictfetchall(cursor)
-    # json_output = getTransactionJSON(request)
-    # graphData = {
-    #     "linecolor": "#152c3f",
-    #     "title": "Transactions",
-    #     "values": json_output
-    # };
-    # json_string = json.dumps(graphData)
+
     context = {
         "datalist": datalist,
-        # "graphData": json_string,
-        # "json_output": request.session.get('user_id', None)
-    }
 
-    # Message according Salary #
-    # context['heading'] = "Detailes Des Transactions ";
+    }
     return render(request, 'admin/all_user.html', context)
+
+
+def search(request):
+    if  request.method == "POST":
+        take = request.POST['search']
+
+        if take :
+
+            cursor = connection.cursor()
+            cursor.execute(
+                "SELECT * FROM users_user where user_name="+str(take))
+            datalist = dictfetchall(cursor)
+
+            context = {
+                "datalist": datalist,
+                "d":take
+            }
+            return render(request, 'admin/search.html', context)
+        else:
+            return redirect(request, 'admin/all_user.html')
+    else:
+        return redirect(request, 'admin/all_user.html')
+
+
+
 
 
 # -----------------------------------transaction with account
