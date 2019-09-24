@@ -52,17 +52,15 @@
                   <tbody>
 
                     {% for data in datalist %}
-
 								<tr>
                                     <td>{{ forloop.counter }}</td>
 									<td>{{data.user_id}}</td>
 									<td>{{data.user_username}}</td>
 									<td>{{data.user_name}}</td>
-
-
                                     <td>
-                                       <button class="btn btn-outline-success btn-user btn-block" type="submit" >
-                    <i class="fas fa-fw fa-eye" ></i>Voir</button>
+                                       <a class="btn btn-outline-info btn-user btn-block "
+                                       href="/users/admin/details/{{data.user_id}}">
+                    <i class="fas fa-fw fa-eye"></i>  Voir plus de details</a>
                                     </td>
 
 
