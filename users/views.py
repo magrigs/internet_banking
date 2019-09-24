@@ -1,7 +1,7 @@
 from cProfile import help
 
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, QueryDict
 from django.conf import settings
 from django.db.models import Q
 from django.core.files.storage import FileSystemStorage
@@ -491,29 +491,27 @@ def all_user(request):
     return render(request, 'admin/all_user.html', context)
 
 
-def search(request):
-    if  request.method == "POST":
-        take = request.POST['search']
-
-        if take :
-
-            cursor = connection.cursor()
-            cursor.execute(
-                "SELECT * FROM users_user where user_name="+str(take))
-            datalist = dictfetchall(cursor)
-
-            context = {
-                "datalist": datalist,
-                "d":take
-            }
-            return render(request, 'admin/search.html', context)
-        else:
-            return redirect(request, 'admin/all_user.html')
-    else:
-        return redirect(request, 'admin/all_user.html')
-
-
-
+#
+# def search(request):
+#     if  request.method == "POST":
+#         take = request.POST['search']
+#         if take :
+#             cursor = connection.cursor()
+#
+#             cursor.execute(
+#                 "SELECT * FROM users_user  WHERE " +
+#                 "user_name=" + str(take) +
+#                 " ")
+#             datalist = dictfetchall(cursor)
+#             context = {
+#                 "datalist": datalist,
+#                 "d":take
+#             }
+#             return render(request, 'admin/search.html', context)
+#         else:
+#             return redirect(request, 'admin/all_user.html')
+#     else:
+#         return redirect(request, 'admin/all_user.html')
 
 
 # -----------------------------------transaction with account
@@ -538,3 +536,14 @@ def transactions_all_account(request):
     # Message according Salary #
     context['heading'] = "Detailes Des Transactions ";
     return render(request, 'transaction-list.html', context)
+
+
+def details(request, userId):
+    if request.method == 'GET':
+
+        take = userId
+        q = QueryDict(take)
+
+        context = {'take': q}
+
+    return render(request, 'admin/details.html', context)

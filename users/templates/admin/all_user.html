@@ -17,8 +17,10 @@
                     <a href="/users/dashboard_admin" class="btn btn-outline-warning btn-back ">
                       <i class="fas fa-tachometer-alt fa-fw"></i> Tableau de Board
                     </a>
+
              </form>
-                <form class="form-inline mr-auto w-100 navbar-search mt-2" method="POST"
+
+               {% comment %} <form class="form-inline mr-auto w-100 navbar-search mt-2" method="POST"
                 action="/users/admin/search">
                     {% csrf_token %}
                   <div class="input-group">
@@ -30,38 +32,37 @@
                       </button>
                     </div>
                   </div>
-                </form>
+                </form>{% endcomment %}
 
             </div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
+                  <thead class="bold text-uppercase" >
                     <tr>
+                                    <th>N°</th>
                                     <th>id</th>
 									<th >Identifiant</th>
 									<th>Nom</th>
-                                    <th>telephone</th>
-                                    <th>email</th>
-                                    <th>mot de passe</th>
-                                    <th>numero de compte</th>
-                                    <th>code ifscc</th>
+                                    <th>plus de detail</th>
+
 
                     </tr>
                   </thead>
                   <tbody>
 
                     {% for data in datalist %}
-
 								<tr>
+                                    <td>{{ forloop.counter }}</td>
 									<td>{{data.user_id}}</td>
 									<td>{{data.user_username}}</td>
 									<td>{{data.user_name}}</td>
-                                    <td>{{data.user_mobile}}</td>
-                                    <td>{{data.user_email}}</td>
-                                    <td>{{data.user_password}}</td>
-                                    <td>{{data.user_account_no}}</td>
-                                    <td>{{data.user_ifsc_no}}</td>
+                                    <td>
+                                       <a class="btn btn-outline-info btn-user btn-block "
+                                       href="/users/admin/details/{{data.user_id}}">
+                    <i class="fas fa-fw fa-eye"></i>  Voir plus de details</a>
+                                    </td>
+
 
 								</tr>
 								{% endfor %}
@@ -73,6 +74,7 @@
                       <i class="fas fa-tachometer-alt fa-fw"></i> Tableau de Board
                     </a>
              </form>
+
               </div>
             </div>
           </div>
