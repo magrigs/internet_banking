@@ -498,10 +498,12 @@ def search(request):
         if take :
 
             cursor = connection.cursor()
-            cursor.execute(
-                "SELECT * FROM users_user where user_name="+str(take))
-            datalist = dictfetchall(cursor)
 
+            cursor.execute(
+                "SELECT * FROM users_user  WHERE " +
+                "user_name=" + str(take) +
+                " ")
+            datalist = dictfetchall(cursor)
             context = {
                 "datalist": datalist,
                 "d":take

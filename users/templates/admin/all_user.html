@@ -17,8 +17,10 @@
                     <a href="/users/dashboard_admin" class="btn btn-outline-warning btn-back ">
                       <i class="fas fa-tachometer-alt fa-fw"></i> Tableau de Board
                     </a>
+
              </form>
-                <form class="form-inline mr-auto w-100 navbar-search mt-2" method="POST"
+
+               {% comment %} <form class="form-inline mr-auto w-100 navbar-search mt-2" method="POST"
                 action="/users/admin/search">
                     {% csrf_token %}
                   <div class="input-group">
@@ -30,7 +32,7 @@
                       </button>
                     </div>
                   </div>
-                </form>
+                </form>{% endcomment %}
 
             </div>
             <div class="card-body">
@@ -38,6 +40,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
+                                    <th>N°</th>
                                     <th>id</th>
 									<th >Identifiant</th>
 									<th>Nom</th>
@@ -54,6 +57,7 @@
                     {% for data in datalist %}
 
 								<tr>
+                                    <td>{{ forloop.counter }}</td>
 									<td>{{data.user_id}}</td>
 									<td>{{data.user_username}}</td>
 									<td>{{data.user_name}}</td>
@@ -73,6 +77,7 @@
                       <i class="fas fa-tachometer-alt fa-fw"></i> Tableau de Board
                     </a>
              </form>
+
               </div>
             </div>
           </div>
