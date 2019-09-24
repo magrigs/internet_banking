@@ -479,7 +479,7 @@ def login_image():
 def all_user(request):
     cursor = connection.cursor()
     cursor.execute(
-        "SELECT * FROM users_user")
+        "SELECT * FROM users_user where user_username not in (select distinct user_username from users_user  where user_username ='admin') group by user_name ")
     datalist = dictfetchall(cursor)
     # json_output = getTransactionJSON(request)
     # graphData = {
