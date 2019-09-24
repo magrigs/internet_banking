@@ -11,27 +11,13 @@
           <div class="card shadow mb-4 ">
             <div class="card-header py-3 mt-10">
 
-              <h6 class=" mb-4 mt-10 font-weight-bold text-primary bold text-uppercase">La Liste Des Utilisateurs</h6>
+              <h6 class=" mb-4 mt-10 font-weight-bold text-primary bold text-uppercase">recherche de utilisateur</h6>
             <form class="user pull-left">
                     <hr>
                     <a href="/users/dashboard_admin" class="btn btn-outline-warning btn-back ">
-                      <i class="fas fa-tachometer-alt fa-fw"></i> Tableau de Board
+                      <i class="fas fa-trash-restore-alt fa-fw"></i> restaurer {{ d }}
                     </a>
              </form>
-                <form class="form-inline mr-auto w-100 navbar-search mt-2" method="POST"
-                action="/users/admin/search">
-                    {% csrf_token %}
-                  <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="rechercher un utilisateur"
-                           name="search" required >
-                    <div class="input-group-append">
-                      <button class="btn btn-outline-primary" type="submit">
-                        <i class="fas fa-search fa-sm"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-
             </div>
             <div class="card-body">
               <div class="table-responsive">
