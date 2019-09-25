@@ -25,6 +25,6 @@ urlpatterns = [
     # ------------------------------ admin -------------------------------
     # -----------------------------------------
     url(r'^admin/all_user', views.all_user, name='Tous Utilisateur'),
-    url(r'^admin/details/(?P<userId>)', views.details, name='details'),
+    url(r'^admin/details', views.details, name='details'),
 
 ]

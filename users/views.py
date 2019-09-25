@@ -5,6 +5,8 @@ from django.http import HttpResponse, QueryDict
 from django.conf import settings
 from django.db.models import Q
 from django.core.files.storage import FileSystemStorage
+from mysql.connector import cursor
+
 from .models import role, user, city, state, country
 from django.contrib import messages
 from django.db import connection
@@ -538,12 +540,25 @@ def transactions_all_account(request):
     return render(request, 'transaction-list.html', context)
 
 
-def details(request, userId):
-    if request.method == 'GET':
+def details(request):
+    if request.method == 'POST':
+        cursor = connection.cursor()
+        id = request.POST['id']
+        #requette sql
+        cursor.execute("SELECT * FROM users_user WHERE user_id =" + str(id) + "")
+        table = dictfetchall(cursor)
+        nom = table[0]['user_name']
+        prenom = table[0]['user_prenom']
+        tel = table[0]['user_mobile']
+        numero_compte = table[0]['user_account_no']
 
-        take = userId
-        q = QueryDict(take)
 
-        context = {'take': q}
+
+        context = {
+            'nom': nom,
+            'prenom' : prenom,
+            'tel': tel,
+            'numero':numero_compte,
+        }
 
     return render(request, 'admin/details.html', context)

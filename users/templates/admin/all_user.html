@@ -58,9 +58,18 @@
 									<td>{{data.user_username}}</td>
 									<td>{{data.user_name}}</td>
                                     <td>
-                                       <a class="btn btn-outline-info btn-user btn-block "
+                                       {% comment %}<a class="btn btn-outline-info btn-user btn-block "
                                        href="/users/admin/details/{{data.user_id}}">
-                    <i class="fas fa-fw fa-eye"></i>  Voir plus de details</a>
+                                       <i class="fas fa-fw fa-eye"></i>  Voir plus de details</a>{% endcomment %}
+
+                                        <form action="/users/admin/details/" method="post">
+                                            {% csrf_token %}
+                                            <input type="hidden"
+                           name="id" value="{{data.user_id}}" >
+                                           <button class="btn btn-outline-primary" type="submit">
+                        <i class="fas fa-fw fa-eye"></i>plus de details
+                      </button>
+                                        </form>
                                     </td>
 
 

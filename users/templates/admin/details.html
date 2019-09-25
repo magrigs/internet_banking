@@ -12,17 +12,17 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4 ">
             <div class="card-header py-3 mt-10">
-              <h4 class=" mb-1 mt-10 font-weight-bold text-primary bold text-uppercase">Details</h4>
+              <h4 class=" mb-1 mt-10 font-weight-bold text-primary bold text-uppercase">
+                  {% if prenom == NULL %}
+                    {% else %}{{ prenom }} {% endif %}
+                     {{ nom }}</h4>
             </div>
             <div class="card-body">
+
                 <h6 class=" mb-4 mt-10 font-weight-bold text-primary
-                bold text-uppercase">preom -- {{ take }}</h6>
+                bold text-uppercase"><i class="fas fa-fw fa-money-bill"></i> {{numero}}</h6>
                 <h6 class=" mb-4 mt-10 font-weight-bold text-primary
-                bold text-uppercase">nom</h6>
-                <h6 class=" mb-4 mt-10 font-weight-bold text-primary
-                bold text-uppercase">client</h6>
-                <h6 class=" mb-4 mt-10 font-weight-bold text-primary
-                bold text-uppercase">numero du telephone</h6>
+                bold text-uppercase"> <i class="fas fa-fw fa-phone-alt"></i> {{ tel }}</h6>
                 <HR>
                 <h2 class=" mb-4 mt-10 font-weight-bold text-primary
                 bold text-uppercase">mouvements du compte</h2>
@@ -55,6 +55,7 @@
           </div>
 
         </div>
+    </div>
 
-    <a href="/users/dashboard_admin">back</a>
+
 {% endblock %}
