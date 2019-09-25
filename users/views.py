@@ -62,7 +62,7 @@ def transactions(request):
     cursor.execute(
         "SELECT * FROM mytransaction  WHERE " +
         "mytransaction_user_id=" + str(request.session.get('user_id', None)) +
-        " ")
+        " order by mytransaction_date desc")
     datalist = dictfetchall(cursor)
 
     json_output = getTransactionJSON(request)
