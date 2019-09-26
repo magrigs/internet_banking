@@ -32,13 +32,13 @@
                 <hr>
                  <form class="user" method="post" >
                      {% csrf_token %}
-                     <!--{% if fn == "add" %}
+                     {% if fn == "add" %}
 					{{sub_heading}}
 				{% elif fn == "update" %}
 					{{sub_heading}}
 				{% else %}
 					My Profile
-				{% endif %}-->
+				{% endif %}
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
                     <input type="text" class="form-control form-control-user"
