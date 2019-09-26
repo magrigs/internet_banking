@@ -44,6 +44,7 @@
                                     <th>id</th>
 									<th >Identifiant</th>
 									<th>Nom</th>
+                                    <th>Prenom</th>
                                     <th>plus de detail</th>
 
 
@@ -57,6 +58,13 @@
 									<td>{{data.user_id}}</td>
 									<td>{{data.user_username}}</td>
 									<td>{{data.user_name}}</td>
+                                    <td>
+                                        {% if data.user_prenom == NULL %}
+                                        -
+                                        {% else %}
+                                        {{data.user_prenom}}
+                                        {% endif %}
+                                        </td>
                                     <td>
                                        {% comment %}<a class="btn btn-outline-info btn-user btn-block "
                                        href="/users/admin/details/{{data.user_id}}">

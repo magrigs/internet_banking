@@ -347,13 +347,14 @@ def update(request, userId):
                 user_id=userId,
                 user_name=request.POST['user_name'],
                 user_email=request.POST['user_email'],
+                user_prenom=request.POST['user_prenom'],
                 user_mobile=request.POST['user_mobile'],
                 user_level_id="2",
                 user_username=request.POST['user_username'],
                 user_password=request.POST['user_password'],
-                user_ifsc_code=request.POST['user_ifsc_code'],
-                user_account_no=request.POST['user_account_no'],
-                user_aadhar=request.POST['user_aadhar']
+                # user_ifsc_code=request.POST['user_ifsc_code'],
+                # user_account_no=request.POST['user_account_no'],
+                # user_aadhar=request.POST['user_aadhar']
             )
 
             addUser.save()
@@ -366,7 +367,7 @@ def update(request, userId):
     else:
         return render(request, 'user.html', context)
 
-
+#
 def link_aadhar_card(request):
     userId = request.session.get('user_id', None)
     userDetails = user.objects.get(user_id=userId)
@@ -383,7 +384,7 @@ def link_aadhar_card(request):
         try:
             cursor.execute("""
                 UPDATE users_user
-                SET user_aadhar=%s WHERE user_id=%s  
+                SET user_aadhar=%s WHERE user_id=%s
             """, (request.POST['user_aadhar'], userId))
         except Exception, e:
             return HttpResponse('Something went wrong. Error Message : ' + str(e))
@@ -411,8 +412,9 @@ def add(request):
                 user_email=request.POST['user_email'],
                 user_mobile=request.POST['user_mobile'],
                 user_level_id=1,
-                user_ifsc_code=request.POST['user_ifsc_code'],
-                user_account_no=request.POST['user_account_no']
+                #user_prenom=request.POST['user_prenom'],
+                # user_ifsc_code=request.POST['user_ifsc_code'],
+                # user_account_no=request.POST['user_account_no']
             )
             addUser.save()
 
@@ -424,10 +426,10 @@ def add(request):
 
 
         except Exception, e:
-            return HttpResponse('Something went wrong. Error Message : ' + str(e))
+            return HttpResponse('Something went wrong. Error Message here : ' + str(e))
         messages.add_message(request, messages.INFO,
                              "Your account has been registered successfully. Login with your username and password")
-        return redirect('/users/')
+        return redirect('/users/dashboard_admin')
 
     else:
         return render(request, 'user.html', context)
