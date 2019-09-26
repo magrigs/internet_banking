@@ -36,7 +36,7 @@
                                     <th>Depôt</th>
 									<th>Retraits</th>
 									<th>Transfert</th>
-                                    <th>Reception</th>
+                                    <th>Reception </th>
                     </tr>
                   </thead>
 
@@ -45,37 +45,38 @@
 								<tr>
                                     <td>{{ forloop.counter }}</td>
 									<td>
-                                        {{mouvement.mytransaction_date}}
-
+                                        {{data.mytransaction_date}}
                                     </td>
 
 
-									<td>{% if mouvement.transaction_montant_depot == NULL %}
+									<td>{% if data.transaction_montant_depot == NULL %}
                                         {{ 0 }}
                                         {% else %}
-                                        {{mouvement.transaction_montant_depot}}
+                                        {{data.transaction_montant_depot}}
                                         {% endif %}
                                     </td>
 
-									<td>{% if mouvement.transaction_montant_retrait == NULL %}
+									<td>{% if data.transaction_montant_retrait == NULL %}
                                         {{ 0 }}
                                         {% else %}
-                                        {{mouvement.transaction_montant_retrait}}
+                                        {{data.transaction_montant_retrait}}
                                         {% endif %}
                                     </td>
+
                                     <td>
-                                        {% if mouvement.transaction_montant_transfer == NULL %}
+                                        {% if data.transaction_montant_transfer == NULL %}
                                         {{ 0 }}
                                         {% else %}
-                                        {{mouvement.transaction_montant_transfer}}
+                                        {{transaction_montant_transfer}}
                                         {% endif %}
 
                                     </td>
+
                                     <td>
-                                         {% if mouvement.transaction_montant_reception == NULL %}
+                                         {% if data.transaction_montant_reception == NULL %}
                                         {{ 0 }}
                                         {% else %}
-                                        {{mouvement.transaction_montant_reception}}
+                                        {{data.transaction_montant_reception}}
                                         {% endif %}
                                         </td>
                                 </tr>

@@ -554,7 +554,7 @@ def details(request):
         numero_compte = table[0]['user_account_no']
 
         # _______________________________________mouvement
-        cursor.execute("SELECT * FROM mytransaction WHERE mytransaction_user_id =" + id + "")
+        cursor.execute("SELECT * FROM mytransaction  WHERE mytransaction_user_id =" + id + "")
         mouvement = dictfetchall(cursor)
         # date = mouvement[0]['mytransaction_date']
         # depot = mouvement[0]['mytransaction_montant_depot']
@@ -563,16 +563,18 @@ def details(request):
         # retrait = mouvement[0]['mytransaction_montant_retrait']
 
         context = {
+            'mouvement': mouvement,
+            'id': id,
             'nom': nom,
             'prenom': prenom,
             'tel': tel,
             'numero': numero_compte,
 
-            # 'date': date,
+            #  'date': date,
             # 'depot': depot,
-            # 'reception': reception,
-            # 'transfert': transfert,
-            # 'retrait': retrait,
+            #  'reception': reception,
+            #  'transfert': transfert,
+            #  'retrait': retrait,
         }
 
     return render(request, 'admin/details.html', context)
