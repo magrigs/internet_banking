@@ -121,10 +121,10 @@ def transfer(request):
 
         cursor.execute("""
             INSERT INTO `mytransaction`
-            SET mytransaction_user_id=%s, mytransaction_type=%s, mytransaction_amount=%s, mytransaction_description=%s, mytransaction_date=%s, montant_restant=%s   
+            SET mytransaction_user_id=%s, mytransaction_type=%s, mytransaction_amount=%s, mytransaction_description=%s, mytransaction_date=%s, montant_restant=%s,mytransaction_montant_reception=%s   
         """, (request.POST['transfer_user_id'], "Credit", request.POST['transfer_amount'],
               "Vous avez recu " + request.POST['transfer_amount'] + " sur votre compte venant de " + str(
-                  table[0]['user_name']), today, amount))
+                  table[0]['user_name']), today, amount, int(request.POST['transfer_amount'])))
 
         # Debit the amount from source Account
         context = {
@@ -141,10 +141,10 @@ def transfer(request):
 
         cursor.execute("""
             INSERT INTO `mytransaction`
-            SET mytransaction_user_id=%s, mytransaction_type=%s, mytransaction_amount=%s, mytransaction_description=%s, mytransaction_date=%s, montant_restant=%s   
+            SET mytransaction_user_id=%s, mytransaction_type=%s, mytransaction_amount=%s, mytransaction_description=%s, mytransaction_date=%s, montant_restant=%s, mytransaction_montant_transfer=%s   
         """, (request.session.get('user_id', None), "Debit", request.POST['transfer_amount'],
               " vous avez envoye " + request.POST['transfer_amount'] + "  sur  compte de " + str(
-                  table2[0]['user_name']), today, amount))
+                  table2[0]['user_name']), today, amount, int(request.POST['transfer_amount'])))
 
         messages.add_message(request, messages.INFO, "Transferer a " + request.POST[
             'transfer_amount'] + "/- a ete faite avec success sur votre compte.")
@@ -192,6 +192,7 @@ def getTransactionJSON(request, one=False):
 # Dashboard of User
 def deposit(request):
     today = datetime.datetime.now()
+
     currentBalance = getData(int(request.session.get('user_id', None)))
     context = {
         "message": "Connectez - vous s.v.p ",
@@ -210,8 +211,8 @@ def deposit(request):
     # Update the Transactions
     cursor.execute("""
         INSERT INTO `mytransaction`
-        SET mytransaction_user_id=%s, mytransaction_type=%s, mytransaction_amount=%s, mytransaction_description=%s, mytransaction_date=%s ,montant_restant=%s  
-    """, (request.session.get('user_id', None), "Credit", "500", "Vous avez fait un depot de 500", today, amount))
+        SET mytransaction_user_id=%s, mytransaction_type=%s, mytransaction_amount=%s, mytransaction_description=%s, mytransaction_date=%s ,montant_restant=%s,mytransaction_montant_depot=%s  
+    """, (request.session.get('user_id', None), "Credit", "500", "Vous avez fait un depot de 500", today, amount,500))
 
     messages.add_message(request, messages.INFO, "Ton Compte a ete credite de   500/-")
 
@@ -551,6 +552,9 @@ def details(request):
         prenom = table[0]['user_prenom']
         tel = table[0]['user_mobile']
         numero_compte = table[0]['user_account_no']
+        #_______________________________________mouvement
+        cursor.execute("SELECT * FROM mytransaction WHERE mytransaction_user_id =" + str(id) + "")
+        mouvement = dictfetchall(cursor)
 
 
 
