@@ -93,7 +93,10 @@ def getDropDown(table, condtion):
 
 # Dashboard of User
 def transfer(request):
-    today = datetime.datetime.now()
+    #today = datetime.datetime.now()
+    time1 = datetime.datetime.now()
+    time2 = str(time1)
+    today = time2[0:19]
 
     context = {
         "fn": "add",
@@ -191,7 +194,9 @@ def getTransactionJSON(request, one=False):
 
 # Dashboard of User
 def deposit(request):
-    today = datetime.datetime.now()
+    time1 = datetime.datetime.now()
+    time2 = str(time1)
+    today = time2[0:19]
 
     currentBalance = getData(int(request.session.get('user_id', None)))
     context = {
