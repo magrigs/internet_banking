@@ -342,6 +342,7 @@ def update(request, userId):
         context['heading'] = "Accountant Management";
 
     if (request.method == "POST"):
+
         try:
             addUser = user(
                 user_id=userId,
@@ -412,7 +413,7 @@ def add(request):
                 user_email=request.POST['user_email'],
                 user_mobile=request.POST['user_mobile'],
                 user_level_id=1,
-                #user_prenom=request.POST['user_prenom'],
+                user_prenom=request.POST['user_prenom'],
                 # user_ifsc_code=request.POST['user_ifsc_code'],
                 # user_account_no=request.POST['user_account_no']
             )

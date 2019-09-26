@@ -15,6 +15,7 @@ class user(models.Model):
     user_email = models.CharField(max_length=255, default = "")
     user_mobile = models.CharField(max_length=255, default = "")
     user_aadhar = models.CharField(max_length=255, default = "")
+    user_prenom = models.CharField(max_length=255, default="")
 
     user_ifsc_code = models.CharField(max_length=255, default = "")
     def __str__(self):
