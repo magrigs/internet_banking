@@ -212,7 +212,7 @@ def deposit(request):
     cursor.execute("""
         INSERT INTO `mytransaction`
         SET mytransaction_user_id=%s, mytransaction_type=%s, mytransaction_amount=%s, mytransaction_description=%s, mytransaction_date=%s ,montant_restant=%s,mytransaction_montant_depot=%s  
-    """, (request.session.get('user_id', None), "Credit", "500", "Vous avez fait un depot de 500", today, amount,500))
+    """, (request.session.get('user_id', None), "Credit", "500", "Vous avez fait un depot de 500", today, amount, 500))
 
     messages.add_message(request, messages.INFO, "Ton Compte a ete credite de   500/-")
 
@@ -545,24 +545,34 @@ def details(request):
     if request.method == 'POST':
         cursor = connection.cursor()
         id = request.POST['id']
-        #requette sql
+        # requette sql
         cursor.execute("SELECT * FROM users_user WHERE user_id =" + str(id) + "")
         table = dictfetchall(cursor)
         nom = table[0]['user_name']
         prenom = table[0]['user_prenom']
         tel = table[0]['user_mobile']
         numero_compte = table[0]['user_account_no']
-        #_______________________________________mouvement
-        cursor.execute("SELECT * FROM mytransaction WHERE mytransaction_user_id =" + str(id) + "")
+
+        # _______________________________________mouvement
+        cursor.execute("SELECT * FROM mytransaction WHERE mytransaction_user_id =" + id + "")
         mouvement = dictfetchall(cursor)
-
-
+        # date = mouvement[0]['mytransaction_date']
+        # depot = mouvement[0]['mytransaction_montant_depot']
+        # reception = mouvement[0]['mytransaction_montant_reception']
+        # transfert = mouvement[0]['mytransaction_montant_transfer']
+        # retrait = mouvement[0]['mytransaction_montant_retrait']
 
         context = {
             'nom': nom,
-            'prenom' : prenom,
+            'prenom': prenom,
             'tel': tel,
-            'numero':numero_compte,
+            'numero': numero_compte,
+
+            # 'date': date,
+            # 'depot': depot,
+            # 'reception': reception,
+            # 'transfert': transfert,
+            # 'retrait': retrait,
         }
 
     return render(request, 'admin/details.html', context)
