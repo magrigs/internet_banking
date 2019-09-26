@@ -37,6 +37,7 @@
 									<th>Retraits</th>
 									<th>Transfert</th>
                                     <th>Reception </th>
+
                     </tr>
                   </thead>
 
@@ -49,36 +50,37 @@
                                     </td>
 
 
-									<td>{% if data.transaction_montant_depot == NULL %}
+									<td>{% if data.mytransaction_montant_depot == NULL %}
                                         {{ 0 }}
                                         {% else %}
-                                        {{data.transaction_montant_depot}}
+                                        {{data.mytransaction_montant_depot}}
                                         {% endif %}
                                     </td>
 
-									<td>{% if data.transaction_montant_retrait == NULL %}
+									<td>{% if data.mytransaction_montant_retrait == NULL %}
                                         {{ 0 }}
                                         {% else %}
-                                        {{data.transaction_montant_retrait}}
+                                        {{data.mytransaction_montant_retrait}}
                                         {% endif %}
                                     </td>
 
                                     <td>
-                                        {% if data.transaction_montant_transfer == NULL %}
+                                        {% if data.mytransaction_montant_transfer == NULL %}
                                         {{ 0 }}
                                         {% else %}
-                                        {{transaction_montant_transfer}}
+                                        {{data.mytransaction_montant_transfer}}
                                         {% endif %}
 
                                     </td>
 
                                     <td>
-                                         {% if data.transaction_montant_reception == NULL %}
+                                         {% if data.mytransaction_montant_reception == NULL %}
                                         {{ 0 }}
                                         {% else %}
-                                        {{data.transaction_montant_reception}}
+                                        {{data.mytransaction_montant_reception}}
                                         {% endif %}
                                         </td>
+
                                 </tr>
 
                     {% endfor %}
@@ -87,7 +89,7 @@
               <form class="user pull-left">
                     <hr>
                     <a href="/users/admin/all_user" class="btn btn-outline-warning btn-user">
-                      <i class="fas fa-backward fa-fw"></i> Tableau de Board
+                      <i class="fas fa-pen fa-fw"></i> Tableau de Board
                     </a>
              </form>
 
