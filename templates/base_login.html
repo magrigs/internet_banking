@@ -48,6 +48,8 @@
                   </div>
                   <form class="user" method="post" onsubmit="/signin" >
                       {% csrf_token %}
+
+
                     <div class="form-group">
 
                       <input type="text" class="form-control form-control-user" id="exampleInputEmail"
@@ -60,12 +62,12 @@
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
                         <input type="checkbox" class="custom-control-input" id="customCheck">
-                        {% comment %}<label class="custom-control-label" for="customCheck">Remember Me</label>{% endcomment %}
+                       <!-- {% comment %}<label class="custom-control-label" for="customCheck">Remember Me</label>{% endcomment %}
                       </div>
                     </div>
 {#                    <a href="index.html" class="btn btn-primary btn-user btn-block">#}
 {#                       Connection#}
-{#                    </a>#}
+{#                    </a>#}-->
                     <button class="btn btn-outline-primary btn-user btn-block" type="submit">
                         <i class="fab fa-fw fa-check fa-fw"></i>Connection</button>
 
@@ -98,7 +100,40 @@
     </div>
 
   </div>
+<!--  les toasts-->
+<div class="toast" role="alert" aria-live="success" aria-atomic="true">
+  <div class="toast-header">
+    <img src="
+" class="rounded mr-2" alt="...">
+    <strong class="mr-auto">system bancaire en ligne</strong>
+    <small>11 mins ago</small>
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="toast-body bg-gradient-success">
+    Connection reuissi
+  </div>
+</div>
 
+  <div class="toast" role="alert" aria-live="failed" aria-atomic="true">
+  <div class="toast-header">
+    <img src="
+" class="rounded mr-2" alt="...">
+    <strong class="mr-auto">system bancaire en ligne</strong>
+    <small>11 mins ago</small>
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="toast-body bg-gradient-danger">
+    erreur de connection
+  </div>
+</div>
+
+  <script>
+
+  </script>
   <!-- Bootstrap core JavaScript-->
   <script src="/assets/design/vendor/jquery/jquery.min.js"></script>
   <script src="/assets/design/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
