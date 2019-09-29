@@ -96,7 +96,7 @@
 
                 {% if admin_create == True %}
                 <div class="alert alert-success" role="alert">
-                administrateur  a été crée avec success
+                 {{msgecreate}}
                 </div>
 
                 {% endif  %}
@@ -233,7 +233,7 @@
 {#                              <div class="h5 mb-0 font-weight-bold text-gray-800">la liste des utilisateurs</div>#}
                             </div>
                             <div class="col-auto">
-                              <i class="fas fa-user fa-2x text-gray-300"></i>
+                              <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
                             </div>
                           </div>
                         </div>
@@ -280,6 +280,24 @@
             </div>
 
             <!-- Pending Requests Card Example -->
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <a href="/users/admin/list_a" style="text-decoration: none">
+                      <div class="card border-bottom-warning shadow h-100 py-2">
+                        <div class="card-body">
+                          <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                              <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">la liste des administrateurs</div>
+
+                            </div>
+                            <div class="col-auto">
+                              <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </a>
+            </div>
 
 
                 <!-- Pending Requests Card Example deconnection  -->

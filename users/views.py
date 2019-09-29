@@ -599,6 +599,7 @@ def add_admin(request):
     context = {
         "error":False,
         "msgerror":"le mot de pass de confirmation est incorrect ",
+        "msgecreate": "admin a ete cree ",
         "fn": "add",
         "heading": 'Users Management',
         "sub_heading": 'Users',
