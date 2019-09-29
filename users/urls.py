@@ -25,6 +25,7 @@ urlpatterns = [
     # ------------------------------ admin -------------------------------
     # -----------------------------------------
     url(r'^admin/all_user', views.all_user, name='Tous_Utilisateur'),
+    url(r'^admin/all_admin', views.all_admin, name='Tous_administrateur'),
     url(r'^admin/details', views.details, name='details'),
     url(r'^admin/admin_user', views.admin_user, name='admin_open '),
     url(r'^add_admin', views.add_admin, name='add_admin'),

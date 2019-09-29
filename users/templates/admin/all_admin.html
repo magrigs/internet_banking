@@ -1,0 +1,132 @@
+{% extends 'base_list.html' %} {% block content %}
+
+<!--breadcrumbs start-->
+    <div class="container-fluid">
+    <div class="card o-hidden border-0 shadow-lg my-5">
+          <!-- Page Heading -->
+
+{#          <p {{ heading }} {{json_output}} class="mb-4"> <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>#}
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4 ">
+            <div class="card-header py-3 mt-10">
+
+              <h4 class=" mb-4 mt-10 font-weight-bold text-primary bold text-uppercase">La Liste Des administrateurs</h4>
+            <form class="user pull-left">
+                    <hr>
+                    <a href="/users/dashboard_admin" class="btn btn-outline-warning btn-back ">
+                      <i class="fas fa-tachometer-alt fa-fw"></i> Tableau de Board
+                    </a>
+
+             </form>
+
+               {% comment %} <form class="form-inline mr-auto w-100 navbar-search mt-2" method="POST"
+                action="/users/admin/search">
+                    {% csrf_token %}
+                  <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="rechercher un utilisateur"
+                           name="search" required >
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-primary" type="submit">
+                        <i class="fas fa-search fa-sm"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>{% endcomment %}
+
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead class="bold text-uppercase" >
+                    <tr>
+                                    <th>N°</th>
+                                    <th>id</th>
+									<th >Identifiant</th>
+									<th>Nom</th>
+                                    <th>Prenom</th>
+
+
+
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    {% for data in datalist %}
+								<tr>
+                                    <td>{{ forloop.counter }}</td>
+									<td>{{data.user_id}}</td>
+									<td>{{data.user_username}}</td>
+									<td>{{data.user_name}}</td>
+                                    <td>
+                                        {% if data.user_prenom == NULL %}
+                                        -
+                                        {% else %}
+                                        {{data.user_prenom}}
+                                        {% endif %}
+                                        </td>
+
+
+
+								</tr>
+								{% endfor %}
+                  </tbody>
+                </table>
+              <form class="user pull-left">
+                    <hr>
+                    <a href="/users/dashboard_admin" class="btn btn-outline-warning ">
+                      <i class="fas fa-tachometer-alt fa-fw"></i> Tableau de Board
+                    </a>
+             </form>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+    {% endblock %}
+<!--breadcrumbs end-->
+{% comment %}
+
+<div class="container">
+	<div class="row">
+		{% if messages %}
+		<div class="alert alert-success fade in" style="margin:10px;">
+			{% for message in messages %}
+			<strong>{{ message }}</strong> {% endfor %}
+		</div>
+		{% endif %}
+		<div class="col-lg-12">
+			<form name="frm" action="" method="post">
+				<h2 style="color:#152c3f; font-size:24px; border-bottom:1px solid #152c3f">La Liste Des Utilisateurs</h2>
+				<section class="panel">
+					<div style="height:400px; overflow:scroll">
+						<table class="table table-striped table-advance table-hover" style="color:#000000">
+							<tbody>
+								<tr class="bg-primary">
+									<th style="background-color:#152c3f; color:#FFFFFF;">id</th>
+									<th style="background-color:#152c3f; color:#FFFFFF;">Identifiant</th>
+									<th style="background-color:#152c3f; color:#FFFFFF;">Nom</th>
+                                    <th style="background-color:#152c3f; color:#FFFFFF;">telephone</th>
+                                    <th style="background-color:#152c3f; color:#FFFFFF;">email</th>
+								</tr>
+								{% for data in datalist %}
+								<tr>
+{#									<td style="text-align:center; font-weight:bold;">{{ forloop.counter }}</td>#}
+									<td>{{data.user_id}}</td>
+									<td>{{data.user_username}}</td>
+									<td>{{data.user_name}}</td>
+                                    <td>{{data.user_mobile}}</td>
+                                    <td>{{data.user_email}}</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</section>
+
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock content %}{% endcomment %}

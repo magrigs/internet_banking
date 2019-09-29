@@ -627,3 +627,16 @@ def add_admin(request):
 
     else:
         return render(request, 'admin/admin_user.html', context)
+
+
+def all_admin(request):
+    cursor = connection.cursor()
+    cursor.execute(
+        "SELECT * FROM users_user where user_level_id = 0 group by user_name ")
+    datalist = dictfetchall(cursor)
+
+    context = {
+        "datalist": datalist,
+
+    }
+    return render(request, 'admin/all_admin.html', context)
