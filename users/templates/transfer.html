@@ -16,6 +16,11 @@
 
               <form class="user" method="post" id="changepass">
                 {% csrf_token %}
+				  {% if txt  %}
+                <div class="alert alert-danger" role="alert">
+                 {{msg}}
+                </div>
+                {% endif %}
 
                   <label for="pwd">Selectionner L'utlisateur </label>
 

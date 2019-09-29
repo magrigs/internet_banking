@@ -98,6 +98,8 @@ def transfer(request):
     today = time2[0:19]
 
     context = {
+        "txt":False,
+        "msg":"",
         "fn": "add",
         "employeetypelist": getDropDown('users_user', 'user_id'),
     };
@@ -148,8 +150,13 @@ def transfer(request):
               " vous avez envoye " + request.POST['transfer_amount'] + "  sur  compte de " + str(
                   table2[0]['user_name']), today, amount, int(request.POST['transfer_amount'])))
 
-        messages.add_message(request, messages.INFO, "Transferer a " + request.POST[
-            'transfer_amount'] + "/- a ete faite avec success sur votre compte.")
+        # messages.add_message(request, messages.INFO, "Transferer a " + request.POST[
+        #     'transfer_amount'] + "/- a ete faite avec success sur votre compte.")
+        context["txt"] = True
+        context["msg"] = "Vous avez effectue un Transfert  de  " + request.POST[
+            'transfer_amount']
+
+
 
     return render(request, 'transfer.html', context)
 
