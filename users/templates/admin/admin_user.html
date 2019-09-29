@@ -1,0 +1,156 @@
+
+{% extends 'base_all.html' %}
+{% block img %}log.jpg{% endblock %}
+
+
+<script>
+	jQuery(function () {
+		jQuery("#user_dob").datepicker({
+			changeMonth: true,
+			changeYear: true,
+			yearRange: "0:+1",
+			dateFormat: 'd MM,yy'
+		});
+		jQuery("#user_doj").datepicker({
+			changeMonth: true,
+			changeYear: true,
+			yearRange: "0:+1",
+			dateFormat: 'd MM,yy'
+		});
+	});
+</script>
+
+<!--breadcrumbs end-->
+
+<!--container start-->
+{% block content %}
+
+            <div class="p-5">
+              <div class="text-center">
+                <h1 class=" text-gray-900 mb-4 text-uppercase">creer un Administrateur</h1>
+              </div>
+
+                <hr>
+                 <form class="user" method="post" action="/users/add_admin">
+                     {% csrf_token %}
+                     {% if error == True %}
+                     <div class="alert alert-danger" role="alert">
+                 {{ msgerror }}
+                </div>
+
+                {% endif  %}
+<!--                     {% if fn == "add" %}-->
+<!--					{{sub_heading}}-->
+<!--				{% elif fn == "update" %}-->
+<!--					{{sub_heading}}-->
+<!--				{% else %}-->
+<!--					My Profile-->
+<!--				{% endif %}-->
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="text" class="form-control form-control-user"
+                           id="exampleFirstName" placeholder="Nom"  name="user_name" required>
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control form-control-user"
+                           id="exampleLastName" placeholder="Prenom"  name="user_prenom" required>
+                  </div>
+                </div>
+					 <div class="form-group">
+                  <input type="text" class="form-control form-control-user" name="user_username"
+                         id="exampleInputEmail" placeholder="identifiant " required>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="password" class="form-control form-control-user"
+                           id="exampleInputPassword" placeholder="mot de passe" name="user_password" required>
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="password" class="form-control form-control-user" name="user_confirm_password"
+                           id="exampleRepeatPassword" placeholder="Répété mot de passe" required>
+                  </div>
+                </div>
+
+
+                <hr>
+                     <div class="form-group">
+                  <input  class="btn btn-outline-success btn-user btn-block"
+						value="Enregistrer"
+                          type="submit" >
+                </div>
+                <a href="/users/dashboard_admin" class="btn btn-outline-danger btn-user btn-block">
+                  <i class="fab fa-fw fa-times "></i> Retour
+                </a>
+                <input type="hidden" name="act" value="save_user">
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+{% endblock %}
+    {% comment %}
+
+<div class="registration-bg">
+	<div class="row">
+		<form enctype="multipart/form-data" method="post" class="form-signin wow fadeInUp" action="" style="max-width:60%">
+			{% csrf_token %}
+			<h2 class="form-signin-heading">
+				&lt;!&ndash;{% if fn == "add" %}
+					{{sub_heading}} Enregistrement
+				{% elif fn == "update" %}
+					{{sub_heading}}
+				{% else %}
+					My Profile
+				{% endif %}&ndash;&gt;
+			</h2>
+			{% if messages %}
+				<div class="alert alert-success fade in" style="margin:10px;">
+					{% for message in messages %}
+						<strong>{{ message }}</strong>
+					{% endfor %}
+				</div>
+			{% endif %}
+			<div class="login-wrap">
+				<div style="font-size:18px; color: #000000; margin:20px 10px 30px 10px; border-bottom:1px solid #CCC"> Détails De Connection D'Utilisateur </div>
+				<div class="col-xs-6 form-group">
+					<label for="pwd">User Full Name</label>
+					<input type="text" class="form-control" placeholder="Nom d'Utilisateur" autofocus="" name="user_name" id="user_name" value="{{userdetails.user_name}}">
+				</div>
+				<div class="col-xs-6 form-group">
+					<label for="pwd"> Connection De Nom d'Utilisateur</label>
+					<input type="text" class="form-control" placeholder="Nom d'Utilisateur" autofocus="" name="user_username" id="user_username" value="{{userdetails.user_username}}">
+				</div>
+				<div class="col-xs-6 form-group update-user">
+					<label for="pwd">Mot De Passe</label>
+					<input type="password" class="form-control" placeholder="Mot De Passe" autofocus="" name="user_password" id="user_password" value="{{userdetails.user_password}}">
+				</div>
+				<div class="col-xs-6 form-group update-user">
+					<label for="pwd">Confirmer  Mot De Passe</label>
+					<input type="password" class="form-control" placeholder="Confirmer  Mot De Passe" autofocus="" name="user_confirm_password" id="user_confirm_password" value="{{userdetails.user_password}}">
+				</div>
+
+
+
+
+				<button class="btn btn-lg btn-login btn-block" type="submit">Submitqq</button>
+			</div>
+			<!--<input type="hidden" name="act" value="save_user">
+			<input type="hidden" name="user_aadhar" value="{{userdetails.user_aadhar}}">
+			<input type="hidden" name="avail_image" value="{{userdetails.user_image}}">
+			<input type="hidden" name="user_id" value="{{userdetails.user_id}}">-->
+		</form>
+	</div>
+</div>
+{% if userdetails %}
+<script>
+	$(".update-user").hide();
+</script>
+{% endif %}{% endcomment %}-->
+<!--container end-->
+

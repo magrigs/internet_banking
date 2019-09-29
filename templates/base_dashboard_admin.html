@@ -93,6 +93,14 @@
           <span>Déconnection</span></a>
       </li>
 
+
+                {% if admin_create == True %}
+                <div class="alert alert-success" role="alert">
+                administrateur  a été crée avec success
+                </div>
+
+                {% endif  %}
+
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
@@ -217,7 +225,7 @@
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
                 <a href="/users/admin/all_user" style="text-decoration: none">
-                      <div class="card border-left-primary shadow h-100 py-2">
+                      <div class="card border-bottom-primary shadow h-100 py-2">
                         <div class="card-body">
                           <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
@@ -235,7 +243,7 @@
 
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
+              <div class="card border-bottom-success shadow h-100 py-2">
                   <a href="/users/add" style="text-decoration: none">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -252,15 +260,31 @@
               </div>
             </div>
 
-            <!-- Earnings (Monthly) Card Example  Transfert -->
+          <!-- Earnings (Monthly) Card Example  user  admin-->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-bottom-dark shadow h-100 py-2">
+                  <a href="/users/admin/admin_user" style="text-decoration: none">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">creer un administrateur</div>
 
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-user-plus fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+                  </a>
+              </div>
+            </div>
 
             <!-- Pending Requests Card Example -->
 
 
                 <!-- Pending Requests Card Example deconnection  -->
             <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-danger shadow h-100 py-2">
+              <div class="card border-bottom-danger shadow h-100 py-2">
                   <a href="/users/logout" style="text-decoration: none">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">

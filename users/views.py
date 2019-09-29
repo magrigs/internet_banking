@@ -20,13 +20,12 @@ import json
 
 # login
 def dashboard_admin(request):
-    currentBalance = getData(int(request.session.get('user_id', None)))
-    futureBalance = int(currentBalance['account_amount']) \
-                    + (int(currentBalance['account_amount']) * 0.07 * 1)
+    currentBalance = int(request.session.get('user_id', None))
+
     context = {
         "fn": "Ajouter",
-        "balance": currentBalance['account_amount'],
-        "future": futureBalance,
+
+
         "bienvenu": "bienvenue cher administrateur",
     };
     return render(request, 'dashboard_admin.html', context)
@@ -160,6 +159,11 @@ def getData(id):
     cursor.execute("SELECT * FROM account WHERE account_user_id = " + str(id))
     dataList = dictfetchall(cursor)
     return dataList[0];
+def getmyData(id):
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM users_user WHERE user_id = " + str(id))
+    dataList = dictfetchall(cursor)
+    return dataList[0];
 
 
 def getInsertID():
@@ -249,7 +253,7 @@ def index(request):
             request.session['user_level_id'] = getUser.user_level_id
             request.session['user_name'] = getUser.user_name
 
-            if request.POST['username'] == 'admin':
+            if getUser.user_level_id == 0:
                 return redirect('/users/dashboard_admin')
             return redirect('/users/dashboard')
 
@@ -586,3 +590,39 @@ def details(request):
         }
 
     return render(request, 'admin/details.html', context)
+
+def admin_user(request):
+    return render(request, 'admin/admin_user.html')
+def add_admin(request):
+
+    #cursor = connection.cursor()
+    context = {
+        "error":False,
+        "msgerror":"le mot de pass de confirmation est incorrect ",
+        "fn": "add",
+        "heading": 'Users Management',
+        "sub_heading": 'Users',
+        "admin_create": False,
+    }
+    if request.method == "POST":
+        if request.POST['user_password']== request.POST['user_confirm_password']:
+            try:
+                addUser = user(
+                    user_name=request.POST['user_name'],
+                    user_username=request.POST['user_username'],
+                    user_password=request.POST['user_password'],
+                    user_level_id=0,
+                    user_prenom=request.POST['user_prenom'],
+
+                )
+                addUser.save()
+                context['admin_create'] = True
+                return redirect('/users/dashboard_admin',context)
+            except Exception, e:
+                return HttpResponse('Something went wrong. Error Message here : ' + str(e))
+        else:
+            context['error'] = True
+            return render(request, 'admin/admin_user.html', context)
+
+    else:
+        return render(request, 'admin/admin_user.html', context)
