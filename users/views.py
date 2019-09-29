@@ -496,7 +496,7 @@ def login_image():
 def all_user(request):
     cursor = connection.cursor()
     cursor.execute(
-        "SELECT * FROM users_user where user_username not in (select distinct user_username from users_user  where user_username ='admin') group by user_name ")
+        "SELECT * FROM users_user where user_level_id not in (select distinct user_level_id from users_user  where user_level_id =0) group by user_name ")
     datalist = dictfetchall(cursor)
 
     context = {
