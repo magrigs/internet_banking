@@ -1,5 +1,5 @@
 Django==1.11.24
-django-debug-toolbar==1.11
+django-debug-toolbar==1.11.1
 homebrew==0.1.10
 mysql-connector-python==2.1.7
 pytz==2019.2
